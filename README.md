@@ -20,8 +20,15 @@ We developed a hybrid information extraction framework by combining Unified Medi
 ### Recurrence extraction and site detection  (JCO informatics)
 We developed a fully automated framework for extracting recurrence timeline and sites. We used an innovative framework, weak supervision strategy for smaller-sized LLMs, incorporating entropy optimization to fine-tune the model for domain-specific language while addressing data imbalance for breast recurrence. We released our extraction code with the academic open-source license in GitHub and packaged the execution code in Docker.
 
-
 All the models are validated on multi-institutional data (Mayo, Stanford, Emory and UC Davis).
 
+## Data Quality Tool 1. Niffler
+Tool for the extraction and de-identification of DICOM images from clinical PACS. Allows harmonization of patient IDs between datasets.
 
+Included as a submodule to preserve updates made to the original repository. Use the `--recursive` flag with `git clone` (e.g. `git clone --recursive PATH`) to include repo submodules, or run `git submodule update --init` to initialize submodules if the repository has already been cloned.
+
+## Data Quality Tool 2. HITI-Preproc
+Preprocessing pipeline for radiology images in DICOM format to standardize and prepare inputs for downstream use. Installable as a Python package from PyPI with `pip install hiti-preproc`.
+
+Included as a submodule to preserve updates made to the original repository. Use the `--recursive` flag with `git clone` (e.g. `git clone --recursive PATH`) to include repo submodules, or run `git submodule update --init` to initialize submodules if the repository has already been cloned.
 
