@@ -4,3 +4,6 @@
 [submodule "Niffler"]
 	path = Niffler
 	url = https://github.com/Emory-HITI/Niffler.git
+[submodule "RadPrompter"]
+	path = RadPrompter
+	url = https://github.com/Emory-HITI/RadPrompter.git
