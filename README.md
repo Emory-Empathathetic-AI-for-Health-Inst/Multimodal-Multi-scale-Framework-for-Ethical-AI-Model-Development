@@ -10,4 +10,15 @@ We develop a multimodal framework to automatize the relevant case-selection base
 ## Model 3. Multimodal spatiotemporal graph neural networks for improved prediction ( IEEE Journal of Biomedical and Health Informatics, 2023)
 While deep-learning-based studies have shown promising empirical results, several limitations exist in prior models for hospital readmission prediction, such as: (a) only patients with certain conditions are considered, (b) do not leverage data temporality, (c) individual admissions are assumed independent of each other, which ignores patient similarity, (d) limited to single modality or single center data. In this study, we propose a multimodal, spatiotemporal graph neural network (MM-STGNN) for prediction of 30-day all-cause hospital readmission, which fuses in-patient multimodal, longitudinal data and models patient similarity using a graph. Using longitudinal chest radiographs and electronic health records from two independent centers, we show that MM-STGNN achieved an area under the receiver operating characteristic curve (AUROC) of 0.79 on both datasets.
 
+## Model 4. NLP Model Toolkits for clinical notes parsing (breast cancer) - 
+### Patient-Centered Outcome extraction (JCO informatics) – We designed a fine-tuning framework for Large language models (LLM) to extract treatment-related side effects after breast cancer therapy from multiple types of clinical notes. We compared the performance of light-weight (GPT-2), middle-weight (BioGPT), and heavy-weight (LLaMA) LLMs for the same extraction task on the in-domain and out-of-domain test sets. We released our extraction code with the academic open-source license in GitHub and packaged the execution code in Docker.
+
+### Treatment extraction  (JCO informatics) – We developed a hybrid information extraction framework by combining Unified Medical Language System (UMLS) parser and a fine-tuned LLM to extract longitudinal treatment timelines from time-stamped clinical notes - specifically designed for breast cancer. Our framework not only determines whether a patient is receiving a specific therapy, but also constructs a longitudinal treatment timeline of the patient based on time-stamped clinical notes. We released our extraction code with the academic open-source license in GitHub and packaged the execution code in Docker.
+
+### Recurrence extraction and site detection  (JCO informatics) – We developed a fully automated framework for extracting recurrence timeline and sites. We used an innovative framework, weak supervision strategy for smaller-sized LLMs, incorporating entropy optimization to fine-tune the model for domain-specific language while addressing data imbalance for breast recurrence. We released our extraction code with the academic open-source license in GitHub and packaged the execution code in Docker.
+
+
+All the models are validated on multi-institutional data (Mayo, Stanford, Emory and UC Davis).
+
+
 

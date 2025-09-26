@@ -1,0 +1,24 @@
+{
+    "LRECUR":"local recurrence", 
+    "DRECUR": "distant recurrence", 
+    "RECUR":"recurrence", 
+    "NEGEX": "negative", 
+    "MBC": "metastatic breast cancer", 
+    "HX": "history", 
+    "w/": "with", 
+    "s/p": "status post", 
+    "ckd":"chronic kidney disease", 
+    "gfr":"Glomerular filtration rate",
+    "s/t":"secondary to", 
+    "METS":"metastases", 
+    "mets":"metastases", 
+    "PT":"patient", 
+    "pt":"patient", 
+    "afib":"atrial fibrillation",
+    "pmh":"past medical history", 
+    "ln":"lymph node", 
+    "FAM":"family", 
+    "uplimb":"upper limb", 
+    "srvy":"survey"
+}
+    
