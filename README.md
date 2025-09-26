@@ -32,3 +32,7 @@ Preprocessing pipeline for radiology images in DICOM format to standardize and p
 
 Included as a submodule to preserve updates made to the original repository. Use the `--recursive` flag with `git clone` (e.g. `git clone --recursive PATH`) to include repo submodules, or run `git submodule update --init` to initialize submodules if the repository has already been cloned.
 
+## Reporting & Documentation Support Tool 1. RadPrompter
+Tool to provide simplified and reproducible LLM prompting for structured reporting and relabeling datasets (e.g. CheXpert). Installable as a Python package from PyPI with `pip install radprompter`.
+
+Included as a submodule to preserve updates made to the original repository. Use the `--recursive` flag with `git clone` (e.g. `git clone --recursive PATH`) to include repo submodules, or run `git submodule update --init` to initialize submodules if the repository has already been cloned.
