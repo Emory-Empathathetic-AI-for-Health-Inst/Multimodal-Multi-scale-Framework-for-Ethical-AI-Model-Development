@@ -1,0 +1,6 @@
+[submodule "HITI-Preproc"]
+	path = HITI-Preproc
+	url = https://github.com/Emory-HITI/HITI-Preproc.git
+[submodule "Niffler"]
+	path = Niffler
+	url = https://github.com/Emory-HITI/Niffler.git
