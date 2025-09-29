@@ -22,6 +22,9 @@ We developed a fully automated framework for extracting recurrence timeline and 
 
 All the models are validated on multi-institutional data (Mayo, Stanford, Emory and UC Davis).
 
+## Model 5. Mammogram Implant Identifier
+We manually labeled the visibility of breast implants in 6,250 mammograms and used 5,000 to train and validate a simple CNN (ResNet18) to predict implant status. This model achieved an AUROC of 0.998, sensitivity of 0.966, and a specificity of 1.000 on the test set of 1,250 images. This model can be used to reliably identify images containing breast implants in the absence of any consistent DICOM tags that carry this information.
+
 ## Data Quality Tool 1. Niffler
 Tool for the extraction and de-identification of DICOM images from clinical PACS. Allows harmonization of patient IDs between datasets.
 
