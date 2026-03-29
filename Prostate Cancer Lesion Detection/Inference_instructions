@@ -1,0 +1,20 @@
+#model weights and steps to run infere4nce using the model:
+
+Model weights will be made accesible upon request.
+
+Steps to run inference :
+To run inference the test data should be aligned with the train format which can be achieved using the dataset_conversion file provided in the repository.
+Next step is to load the customized trainer and the box crop file which is used to crop the entire image to the ROI size used in training the box crop is adaptable and is made using the gland mask .
+
+Next to run inference :
+#command
+!nnUNetv2_predict \
+ -i \
+ -o  \
+ -d 001 \
+ -c 3d_fullres \
+ -f 0 1 2 \
+ -tr nnUNetTrainer_FinalSOTAKillVersion \
+ --disable_tta
+
+#load the customized trainer before running the inference
