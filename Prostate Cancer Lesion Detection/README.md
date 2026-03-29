@@ -1,7 +1,7 @@
 nnUNet Prostate Cancer Lesion Detection
 
 This repository contains the codebase and processing pipeline used for prostate cancer lesion detection using an nnU-Net–based framework.
-
+These models trained are from the Indiana Univeristy (Shiradkar Lab)
 The model is trained on publicly available datasets and includes preprocessing, dataset preparation, and training utilities.
 Overview
 Task: Prostate cancer lesion detection
