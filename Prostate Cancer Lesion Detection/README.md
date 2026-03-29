@@ -1,24 +1,24 @@
 nnUNet Prostate Cancer Lesion Detection
 
-This repository contains the codebase and processing pipeline used for prostate cancer lesion detection using an nnU-Net–based framework.
-These models trained are from the Indiana Univeristy (Shiradkar Lab)
-The model is trained on publicly available datasets and includes preprocessing, dataset preparation, and training utilities.
-Overview
-Task: Prostate cancer lesion detection
-Framework: nnU-Net (customized pipeline)
-Datasets Used:
+This repository contains the codebase and processing pipeline for prostate cancer lesion detection using an nnU-Net–based framework.
+
+The models were developed at Indiana University, Indianapolis (Shiradkar Lab) and trained on publicly available datasets.
+
+📌 Overview
+🧾 Task: Prostate cancer lesion detection
+⚙️ Framework: nnU-Net (customized pipeline)
+🗂️ Datasets Used:
 PI-CAI
 Prostate-158
 
-This repository provides all necessary steps to:
+This repository includes all necessary steps to:
 
-Prepare data
-Convert to nnU-Net format
-Train the model
-Validate dataset integrity
+📥 Prepare data
+🔄 Convert to nnU-Net format
+🧠 Train the model
+✅ Validate dataset integrity
 
-
-Key Files
+📂 Key Files
 nnunet_dataformat_conversion.py
 → Converts raw data into nnU-Net compatible format
 gland_crop_bbox.py
@@ -32,8 +32,7 @@ customized_trainer.py
 nnunet_dataset.py
 → Dataset handling and loading logic
 Steps_to_run_inference
-→ Instructions to run inference using trained model
-
+→ Instructions to run inference using the trained model
 
 
 📦 Model Weights
@@ -42,18 +41,13 @@ Model weights are not publicly hosted.
 
 📩 To request access, please contact the authors.
 
-
-
 📊 Notes
-The pipeline is designed for research purposes
-Ensure consistent preprocessing across datasets
-Cropping and label handling are critical for performance
+⚠️ The pipeline is intended for research purposes only
+🔁 Ensure consistent preprocessing across datasets
+🎯 Cropping and label handling are critical for optimal performance
 
 
-
-Acknowledgements
+🙏 Acknowledgements
 nnU-Net framework
 PI-CAI Challenge
 Prostate-158 Dataset
-
-
