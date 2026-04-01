@@ -1,11 +1,11 @@
 # Repository Guidelines (Reorganized Workspace)
 
-Use this directory as the active cutover workspace.
+Use this directory as the active tooling-first workspace.
 
 ## Immediate workflow
-1. Move/merge code from main + side branches into `unified/`.
-2. Log source and decisions in `reconciliation/`.
-3. Update gap status in `gap_analysis/` after each major consolidation step.
+1. Implement and maintain code in top-level roots: `tools/`, `models/`, `fusion/`, `feature_representation/`.
+2. Log source and reconciliation decisions in `reconciliation/` (process/audit docs only).
+3. Update gap status in `gap_analysis/` after each major consolidation or tooling change.
 
 ## Required status labels
 - Tool status: `Implemented`, `Partial`, `Missing`

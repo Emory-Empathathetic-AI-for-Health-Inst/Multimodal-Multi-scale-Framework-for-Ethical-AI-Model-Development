@@ -1,21 +1,23 @@
 # Reorganized Workspace
 
-This directory is the canonical destination for same-day branch unification.
+This directory is the canonical tooling workspace.
 
 ## Purpose
-- Consolidate code from:
-  - `multimodal-grant-main-branch/`
-  - `multimodal-grant-side-branch/`
-- Record all move/reconciliation decisions
-- Produce post-cutover gap analysis against `TOOLING_OVERVIEW.md`
+- Host active code and assets under top-level roots:
+  - `tools/`
+  - `models/`
+  - `fusion/`
+  - `feature_representation/`
+- Preserve provenance/reconciliation records in `reconciliation/`
+- Maintain post-cutover gap analysis in `gap_analysis/` against `TOOLING_OVERVIEW.md`
 
 ## Key subdirectories
-- `unified/` — consolidated code/assets
-- `reconciliation/` — source mapping + duplicate/conflict decisions + move log
+- `tools/`, `models/`, `fusion/`, `feature_representation/` — active tooling and model code roots
+- `reconciliation/` — process/audit documentation (source mapping, move decisions, phase completion)
 - `gap_analysis/` — implemented/partial/missing tool status and priority gaps
 
 ## Operating rule
-For every move into `unified/`, update:
+For every structural move across code roots, update:
 1. `reconciliation/source_map.md`
 2. `reconciliation/move_log.md`
 3. `reconciliation/duplicate_conflicts.md` (only when conflicts exist)
