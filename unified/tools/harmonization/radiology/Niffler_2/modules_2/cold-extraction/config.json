@@ -1,0 +1,17 @@
+{
+	"NifflerSystem": "system.json",
+	"StorageFolder": "/opt/data/new-study",
+	"FilePath": "{00100020}/{0020000D}/{0020000E}/{00080018}.dcm",
+	"CsvFile": "csv/empi.csv",
+	"NumberOfQueryAttributes": 1,
+	"FirstAttr": "PatientID",
+	"FirstIndex": 0,
+	"SecondAttr": "AccessionNumber",
+	"SecondIndex": 5,
+	"ThirdAttr": "StudyDate",
+	"ThirdIndex": 3,
+	"LongAccession": false,
+	"DateFormat": "%Y%m%d",
+	"SendEmail": true,
+	"YourEmail": "test@test.test"
+}
