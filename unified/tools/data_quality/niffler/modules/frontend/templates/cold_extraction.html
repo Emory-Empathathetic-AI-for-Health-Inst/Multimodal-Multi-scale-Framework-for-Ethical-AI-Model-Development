@@ -1,0 +1,508 @@
+{% extends "base.html" %} {% block content %}
+<div class="coldExtraction">
+    <div class="backdrop">
+        <div class="container-fluid">
+            <div style="padding-top: 30px">
+                <center>
+                    <h1 style="color: white; letter-spacing: 2px">
+                        On-demand Extraction
+                    </h1>
+                </center>
+            </div>
+            <script>
+                $(document).ready(function () {
+                    $('[data-toggle="tooltip"]').tooltip();
+                });
+            </script>
+            <form id="coldForm">
+                <div class="row">
+                    <div
+                        class="col-5"
+                        style="
+                            padding: 20px;
+                            margin-top: 20px;
+                            margin-left: 55px;
+                            background: rgba(255, 255, 255, 0.25);
+                            border-radius: 25px;
+                            margin-bottom: 40px;
+                        "
+                    >
+                        <center>
+                            <h3 style="color: white; letter-spacing: 1px">
+                                Edit Configurations
+                            </h3>
+                        </center>
+
+                        <div
+                            class="row"
+                            style="justify-content: center; align-items: center"
+                        >
+                            <div class="col-1">
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-primary"
+                                    data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="Default: system.json"
+                                >
+                                    ?
+                                </button>
+                            </div>
+                            <div class="col-5">
+                                <div class="text">Niffler System*</div>
+                            </div>
+                            <div class="col">
+                                <input
+                                    class="form-control"
+                                    type="text"
+                                    name="NifflerSystem"
+                                    value="system.json"
+                                    placeholder="system.json"
+                                />
+                            </div>
+                        </div>
+
+                        <div
+                            class="row"
+                            style="justify-content: center; align-items: center"
+                        >
+                            <div class="col-1">
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-primary"
+                                    data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="/opt/storage/. . . ."
+                                >
+                                    ?
+                                </button>
+                            </div>
+                            <div class="col-5">
+                                <div class="text">Storage Folder*</div>
+                            </div>
+                            <div class="col">
+                                <input
+                                    class="form-control"
+                                    type="text"
+                                    name="StorageFolder"
+                                    required
+                                    placeholder="path/to/storage/folder"
+                                />
+                            </div>
+                        </div>
+
+                        <div
+                            class="row"
+                            style="justify-content: center; align-items: center"
+                        >
+                            <div class="col-1">
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-primary"
+                                    data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="File path hierarchy"
+                                >
+                                    ?
+                                </button>
+                            </div>
+                            <div class="col-5">
+                                <div class="text">File Path</div>
+                            </div>
+                            <div class="col" style="width: 100%">
+                                <input
+                                    class="form-control"
+                                    type="text"
+                                    name="file_path"
+                                    value="{00100020}/{0020000D}/{0020000E}/{00080018}.dcm"
+                                    style="font-size: 15px"
+                                />
+                            </div>
+                        </div>
+
+                        <div
+                            class="row"
+                            style="justify-content: center; align-items: center"
+                        >
+                            <div class="col-1">
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-primary"
+                                    data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="Default:'%Y%m%d', Change if you wish any other format"
+                                >
+                                    ?
+                                </button>
+                            </div>
+                            <div class="col-5">
+                                <div class="text">Date Format</div>
+                            </div>
+                            <div class="col">
+                                <input
+                                    class="form-control"
+                                    type="text"
+                                    name="DateFormat"
+                                    placeholder="E.g. %Y%m%d"
+                                    value="%Y%m%d"
+                                />
+                            </div>
+                        </div>
+
+                        <div
+                            class="row"
+                            style="justify-content: center; align-items: center"
+                        >
+                            <div class="col-1">
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-primary"
+                                    data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="True if you want to receive email else false"
+                                >
+                                    ?
+                                </button>
+                            </div>
+                            <div class="col-5">
+                                <div class="text">Send Email</div>
+                            </div>
+                            <div class="col">
+                                <select
+                                    class="form-select"
+                                    aria-label="Default select example"
+                                    name="sendEmail"
+                                    id="sendEmail"
+                                    onchange="yesnoCheck(this);"
+                                >
+                                    <!-- <option selected value="">Select</option> -->
+                                    <option value="True">True</option>
+                                    <option selected value="False">
+                                        False
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <script>
+                            function yesnoCheck(that) {
+                                if (that.value == "True") {
+                                    document.getElementById(
+                                        "ifYes"
+                                    ).style.display = "flex";
+                                } else {
+                                    document.getElementById(
+                                        "ifYes"
+                                    ).style.display = "none";
+                                }
+                            }
+                        </script>
+
+                        <div class="row" id="ifYes" style="display: none">
+                            <div class="col">
+                                <div class="text">Email</div>
+                            </div>
+                            <div class="col">
+                                <input
+                                    class="form-control"
+                                    type="email"
+                                    name="email"
+                                    placeholder="Enter your Email"
+                                />
+                            </div>
+                        </div>
+                        <div
+                            class="row"
+                            style="justify-content: center; align-items: center"
+                        >
+                            <div class="col-1">
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-primary"
+                                    data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="Niffler/cold-extraction/csv/your-file.csv"
+                                >
+                                    ?
+                                </button>
+                            </div>
+                            <div class="col-5">
+                                <div class="text">CSV File*</div>
+                            </div>
+                            <div class="col">
+                                <input
+                                    class="form-control"
+                                    type="file"
+                                    name="csvFile_choose"
+                                    placeholder="Your CSV File"
+                                />
+                                <center>
+                                    <h4 style="color: white">OR</h4>
+                                </center>
+                                <input
+                                    class="form-control"
+                                    type="text"
+                                    name="csvFile_name"
+                                    placeholder="Your csv file path"
+                                />
+                            </div>
+                        </div>
+                        <br />
+                        <div
+                            class="row"
+                            style="justify-content: center; align-items: center"
+                        >
+                            <div class="col-1">
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-primary"
+                                    data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="Add attributes"
+                                >
+                                    ?
+                                </button>
+                            </div>
+                            <div class="col-5">
+                                <div class="text">Add Attributes</div>
+                            </div>
+                            <div class="col input_fields_wrap">
+                                <button
+                                    class="btn btn-success add_field_button"
+                                    type="button"
+                                >
+                                    Add More Fields
+                                </button>
+                                <div>
+                                    <br />
+                                    <input
+                                        class="form-control"
+                                        type="text"
+                                        placeholder="First Attribute"
+                                        name="attr[1]"
+                                    />
+                                    <br />
+                                    <input
+                                        class="form-control"
+                                        type="number"
+                                        min="0"
+                                        placeholder="CSV Column Index"
+                                        name="column[1]"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <center>
+                            <div class="row" style="margin-top: 20px">
+                                <div class="col">
+                                    <button
+                                        type="reset"
+                                        class="btn btn-outline-info"
+                                    >
+                                        RESET
+                                    </button>
+                                </div>
+                                <div class="col">
+                                    <button
+                                        type="button"
+                                        class="btn btn-warning"
+                                        id="run-cold"
+                                    >
+                                        RUN
+                                    </button>
+                                </div>
+                            </div>
+                        </center>
+                        <script>
+                            $(document).ready(function () {
+                                var max_fields = 3; //maximum input boxes allowed
+                                var wrapper = $(".input_fields_wrap"); //Fields wrapper
+                                var add_button = $(".add_field_button"); //Add button ID
+
+                                var x = 1; //initlal text box count
+                                $(add_button).click(function (e) {
+                                    //on add input button click
+                                    e.preventDefault();
+                                    if (x < max_fields) {
+                                        //max input box allowed
+                                        x++; //text box increment
+                                        var st = "";
+                                        if (x == 2) {
+                                            st = "Second";
+                                        } else if (x == 3) {
+                                            st = "Third";
+                                        }
+                                        $(wrapper).append(
+                                            `<div>` +
+                                                `<br />` +
+                                                ` <input class="form-control" type="text" name="attr[` +
+                                                x +
+                                                `]" placeholder="` +
+                                                st +
+                                                ` Attribute" />` +
+                                                `<br />` +
+                                                `<input class="form-control" type="number" min = "0" name="column[` +
+                                                x +
+                                                `]"  placeholder="CSV Column index" style="margin-bottom: 12px;"/>` +
+                                                `<a href="#" class="remove_field">Remove</a>` +
+                                                `</div>`
+                                        ); // add input boxes.
+                                    }
+                                });
+
+                                $(wrapper).on(
+                                    "click",
+                                    ".remove_field",
+                                    function (e) {
+                                        //user click on remove text
+                                        e.preventDefault();
+                                        $(this).parent("div").remove();
+                                        x--;
+                                    }
+                                );
+                            });
+                        </script>
+                    </div>
+                    <div class="col-1"></div>
+                    <div class="col" style="padding-top: 30px">
+                        <div
+                            class="container center"
+                            style="
+                                background: rgba(0, 0, 0, 0.65);
+                                border-radius: 30px;
+                                padding: 25px;
+                            "
+                        >
+                            <!-- <center>
+                                <h1 style="color: white">LOGS</h1>
+                            </center>
+                            <br />
+                            {% if logs %}
+                            <h4 style="color: white">Errors: {{ logs[0] }}</h4>
+                            <h4 style="color: white">Status: {{ logs[1] }}</h4>
+                            <h4 style="color: white">
+                                Please check your storage folder !!
+                            </h4>
+                            {% else %}
+                            <h4 style="color: white">
+                                Run On-demand Extraction to check Logs
+                            </h4>
+                            {% endif %} -->
+                            <center>
+                                <h2 style="color: white">
+                                    FILES PRESENT ON SERVER
+                                </h2>
+                            </center>
+                            <br />
+                            {% if files_list %} {% for files in files_list %}
+                            <h4 style="color: white">→ {{ files }}</h4>
+                            {% endfor %} {% else %}
+                            <h4 style="color: white">
+                                No files present on server currently !!<br />
+                                Please upload files from your system
+                            </h4>
+                            {% endif %}
+                            <br />
+                            {% if logs %}
+                            <h4 style="color: white">Errors: {{ logs[0] }}</h4>
+                            {% else %}
+                            <h4 style="color: white" id="res">
+                                Run On-demand Extraction to check Logs
+                            </h4>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-1"></div>
+                </div>
+            </form>
+            <script type="text/javascript" charset="utf-8">
+                var socket = io.connect(
+                    "http://" + document.domain + ":" + location.port
+                );
+                let button = document.getElementById("run-cold");
+
+                button.addEventListener("click", () => {
+                    const form = document.getElementById("coldForm");
+                    var number_of_query_attributes = 1;
+                    if (form.elements["attr[2]"] === undefined) {
+                        var SecondAttr = "";
+                        var SecondIndex = 0;
+                    } else {
+                        var SecondAttr = form.elements["attr[2]"].value;
+                        var SecondIndex = form.elements["column[2]"].value;
+                        number_of_query_attributes += 1;
+                    }
+                    if (form.elements["attr[3]"] === undefined) {
+                        var ThirdAttr = "";
+                        var ThirdIndex = 0;
+                    } else {
+                        var ThirdAttr = form.elements["attr[3]"].value;
+                        var ThirdIndex = form.elements["column[3]"].value;
+                        number_of_query_attributes += 1;
+                    }
+                    var csv_choose;
+                    var csv_choose_name;
+                    if (form.elements["csvFile_choose"].files.length === 0) {
+                        csv_choose = "";
+                        csv_choose_name = "";
+                    } else {
+                        csv_choose = form.elements["csvFile_choose"].files[0];
+                        csv_choose_name =
+                            form.elements["csvFile_choose"].files[0].name;
+                    }
+                    var csv_name;
+                    if (form.elements["csvFile_name"] === undefined) {
+                        csv_name = "";
+                    } else {
+                        csv_name = form.elements["csvFile_name"].value;
+                    }
+                    coldData = {
+                        NifflerSystem: form.elements["NifflerSystem"].value,
+                        StorageFolder: form.elements["StorageFolder"].value,
+                        FilePath: form.elements["file_path"].value,
+                        FirstAttr: form.elements["attr[1]"].value,
+                        FirstIndex: form.elements["column[1]"].value,
+                        SecondAttr: SecondAttr,
+                        SecondIndex: SecondIndex,
+                        ThirdAttr: ThirdAttr,
+                        ThirdIndex: ThirdIndex,
+                        NumberOfQueryAttributes: number_of_query_attributes,
+                        DateFormat: form.elements["DateFormat"].value,
+                        SendEmail: document.getElementById("sendEmail").value,
+                        YourEmail: form.elements["email"].value,
+                        csv_file: csv_choose,
+                        csv_file_name: csv_choose_name,
+                        csv_file_path: csv_name,
+                    };
+                    socket.emit("processing-cold-extraction", {
+                        data: coldData,
+                    });
+                });
+
+                socket.on("processing", function (data) {
+                    document.getElementById("res").innerHTML =
+                        JSON.parse(data).data;
+                    socket.emit("running-cold-extraction", {
+                        data: JSON.parse(data).cold_Values,
+                    });
+                });
+
+                socket.on("processing-finished", function (data) {
+                    var x = JSON.parse(data).data;
+                    document.getElementById("res").innerHTML =
+                        `<h4 style="color: white">Errors: ${x[0]}</h4>` +
+                        `<h4 style="color: white">Status: ${x[1]}</h4>`;
+                    if (x[1] === "UNSUCCESSFUL :( !!") {
+                        document.getElementById(
+                            "res"
+                        ).innerHTML += `<h4 style="color: white">Something went wrong, Please Try again !!</h4>`;
+                    } else {
+                        document.getElementById(
+                            "res"
+                        ).innerHTML += `<h4 style="color: white">Please check your Storage folder !!</h4>`;
+                    }
+                });
+            </script>
+        </div>
+    </div>
+</div>
+{% endblock %}

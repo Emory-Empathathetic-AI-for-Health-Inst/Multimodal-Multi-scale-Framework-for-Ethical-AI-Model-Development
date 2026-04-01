@@ -1,0 +1,12 @@
+.ipynb_checkpoints
+*/.ipynb_checkpoints
+
+.vscode
+.vscode/*
+
+# exclude pycache files
+*/__pycache__/
+
+# exclude environment variables file
+.env
+*/.env

@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=64", "setuptools_scm>=8", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hiti-preproc"
+dynamic = ["version"]
+
+dependencies = [
+	"numpy>=2.3",
+	"opencv_python>=4.10",
+	"pydicom>=3.0"
+]
+
+[tool.setuptools_scm]
