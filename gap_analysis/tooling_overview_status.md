@@ -1,15 +1,15 @@
 # TOOLING_OVERVIEW Status
 
-Status is based on evidence currently present in `reorganized/unified/` after Phase 2-4 copy-only consolidation.
+Status is based on evidence currently present in top-level `reorganized/` code roots after Phase 2-4 copy-only consolidation.
 
-| Tool (from TOOLING_OVERVIEW.md) | Lab | Status (Implemented/Partial/Missing) | Evidence path in `reorganized/unified/` | Branch coverage (Main/Side/Both) | Notes |
+| Tool (from TOOLING_OVERVIEW.md) | Lab | Status (Implemented/Partial/Missing) | Evidence path in `reorganized/` | Branch coverage (Main/Side/Both) | Notes |
 |---|---|---|---|---|---|
 | RadIQ | HITI | Partial | `tools/harmonization/radiology/RadQy-master/` | Side | Related QC tool present; explicit FM-based OOD implementation not identified. |
 | Niffler | HITI | Implemented | `tools/data_quality/niffler/`; `tools/harmonization/radiology/Niffler_2/` | Both | Canonical and variant copies exist. |
 | DICOM PreProcessor | HITI | Implemented | `tools/data_quality/hiti_preproc/`; `tools/harmonization/radiology/HITI-Preproc/` | Both | Canonical and harmonization copy present. |
 | MRQy | Empathi | Partial | `tools/harmonization/radiology/PIQUALvsMRQy_codes/`; `tools/harmonization/radiology/RadQy-master/` | Side | MRQy-related experiments/tooling present; not a clearly packaged standalone MRQy repo. |
 | HistoQC | Empathi | Partial | `tools/harmonization/pathology/HistoQC-master.zip` | Side | Archive artifact present; runnable extracted project not yet validated. |
-| MSERg | Empathi | Missing | - | - | No explicit co-registration tool with this name found in unified tree. |
+| MSERg | Empathi | Missing | - | - | No explicit co-registration tool with this name found in current tree. |
 | Mammography Patch Classifier | HITI | Missing | - | - | No dedicated patch-classifier project found. |
 | Mammography Cancer Classifier | HITI | Missing | - | - | No dedicated whole-image mammography classifier project found. |
 | Mammography Patch Describer | HITI | Missing | - | - | No patch-description model/tool found. |
