@@ -1,0 +1,23 @@
+{
+    "input_file_path": "give-pred_recur.csv_file-path",
+    "output_folder" : "give-folder-path-to-save-the-output-file",
+    "dropout" : 0.3,
+    "num_classes" : 11,
+    "MAX_LEN" : 512,
+    "num_workers" : 0,
+    "TEST_BATCH_SIZE" : 8,
+    "label_dict":{
+        "0":"Locoregional", 
+        "1":"Lymphatic", 
+        "2":"Musculoskeletal", 
+        "3":"Digestive", 
+        "4":"Endocrine", 
+        "5":"Respiratory", 
+        "6":"CNS", 
+        "7":"Reproductive", 
+        "8":"Cardiovascular", 
+        "9":"Integumentary", 
+        "10":"Urinary"
+    }
+}
+
