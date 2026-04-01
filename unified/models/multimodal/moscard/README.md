@@ -1,0 +1,65 @@
+### Model framework and Multimodal Causal graph 
+
+* Model overview:
+Proposed MOSCARD architecture and de-confounding causal reasoning graph, input X, task label Y, causal factor A, confounder C, directed edges for causal confounder relations: (a) Step 1 – single modality encoder training with confusion loss; (b) Step 2 multimodal learning with co-attention and SCM; (c) Step 1 training – Single modality; (d) Step 2 Multimodal training with co-attention and causal intervention.
+
+
+### Train the models
+
+* Data preparation
+  - Prepare your data by following the example provided in `config/train.csv`.
+  - Update the data path in `config/config.json`.
+  - Convert ECG signals into image representations using the code example in `ECG/data/ecg_convert_example.ipynb` (reference from [ecg_plot library](https://github.com/dy1901/ecg_plot/tree/master))
+  - Delete all the lateral images of chest X-ray datasets by running the example command: `python CXR/view_clf/inference.py`
+  - Convert chest X-ray DICOM to PNG (reference from (https://github.com/ramon349/DicomProcTools/blob/main/A3IDicomTools/extractors/PngExtractor.py))
+
+* Model Training
+Ensure all necessary packages are installed by running:
+`pip install -r requirements.txt`
+  - Single modality training
+    - CXR single modality Baseline follow the on-screen prompt to choose a mode (1: Baseline single modality encoder training; 2: Single modality encoder training with confusion loss): `bash CXR/scrpits/train.sh`
+    - ECG single modality Baseline follow the on-screen prompt to choose a mode (1: Baseline single modality encoder training; 2: Single modality encoder training with confusion loss): `bash ECG/scrpits/train.sh`
+
+  - MOSCARD training
+    - Train follow the on-screen prompt to choose a mode (1–4): `bash MOSCARD/scrpits/train.sh`
+      
+    | Option | Mode Name | Description |
+    |--------|-----------|-------------|
+    | 1 | Baseline | Trains a baseline multimodal model using pre-trained ECG and CXR backbones without de-confounding and causal reasoning. |
+    | 2 | Causal | Trains the model with causal reasoning mechanisms based on Baseline. |
+    | 3 | Conf | Trains the single baseline model using backbones that were trained with de-confounding strategies. |
+    | 4 | CaConf | Trains the causal model using de-confounding backbones (Final Proposed model). |
+
+  - MedCLIP Baseline training: Train follow the on-screen prompt to choose a mode (1-2): `bash MedClip_baseline/scripts/train.sh`
+    - Mode 1 focuses on learning shared representations between modalities through CLIP-based alignment and cross-attention.
+    - Mode 2 performs downstream classification by freezing the alignment backbone and training only the final MLP classifiers.
+
+  - ALBEF Baseline training reference is from [code](https://github.com/rimitalahiri92/ALBEF_baselines).
+
+
+* Model Testing
+  - Single modality testing
+    - CXR single modality: `bash CXR/scrpits/train.sh`
+    - ECG single modality: `bash ECG/scrpits/train.sh`
+  - MOSCARD training testing: `bash MOSCARD/scrpits/test.sh`
+  - MedCLIP Baseline testing: `bash MedClip_baseline/scripts/test.sh`
+  - ALBEF Baseline testing reference is from [code](https://github.com/rimitalahiri92/ALBEF_baselines).
+
+* Model Weights
+  - Model weights for the proposed MOSCARD model, including Step 1: single-modality training weights, and Step 2: multi-modal classification training weights.
+    Location: [google drive](https://drive.google.com/drive/folders/10IcvmM1VtWpMg3cK7XkLnVyc-KuK433V?usp=drive_link)
+
+
+* Saliency map figure
+To plot a saliency map, you can refer to the [code]([https://github.com/adityac94/Grad_CAM_plus_plus/tree/master](https://github.com/sunnynevarekar/pytorch-saliency-maps/blob/master/Saliency_maps_in_pytorch.ipynb)).
+
+### Contact
+* If you have any quesions, please post it on github issues or email [me](jialupi@asu.edu).
+
+### Reference
+* [https://github.com/mahmoodlab/MCAT/tree/master?tab=readme-ov-file](https://github.com/mahmoodlab/MCAT/tree/master?tab=readme-ov-file)
+* [https://github.com/RyanWangZf/MedCLIP](https://github.com/RyanWangZf/MedCLIP)
+* [https://github.com/dy1901/ecg_plot/tree/master](https://github.com/dy1901/ecg_plot/tree/master)
+* [https://github.com/adityac94/Grad_CAM_plus_plus/tree/master](https://github.com/sunnynevarekar/pytorch-saliency-maps/blob/master/Saliency_maps_in_pytorch.ipynb)
+
+
