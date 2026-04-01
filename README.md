@@ -1,23 +1,22 @@
-# Reorganized Workspace
+# Multimodal Tooling Repository
 
-This directory is the canonical tooling workspace.
+This repository organizes multimodal tooling assets for data quality, harmonization, reporting, model development, and multimodal fusion workflows.
 
-## Purpose
-- Host active code and assets under top-level roots:
-  - `tools/`
-  - `models/`
-  - `fusion/`
-  - `feature_representation/`
-- Preserve provenance/reconciliation records in `reconciliation/`
-- Maintain post-cutover gap analysis in `gap_analysis/` against `TOOLING_OVERVIEW.md`
+## Repository scope
+- Provide a single codebase for multimodal tooling and model assets.
+- Keep tooling and model code in stable top-level roots for direct development and reuse.
+- Retain audit/process history in `reconciliation/`.
+- Track implementation coverage and priority gaps in `gap_analysis/`.
 
-## Key subdirectories
-- `tools/`, `models/`, `fusion/`, `feature_representation/` — active tooling and model code roots
-- `reconciliation/` — process/audit documentation (source mapping, move decisions, phase completion)
-- `gap_analysis/` — implemented/partial/missing tool status and priority gaps
+## Directory layout
+- `tools/` — tooling projects for data quality, harmonization, and reporting workflows.
+- `models/` — model projects across mammography, multimodal, NLP, and prostate domains.
+- `fusion/` — multimodal fusion implementations (deep and handcrafted pipelines).
+- `feature_representation/` — feature representation assets by modality/domain.
+- `gap_analysis/` — current implemented/partial/missing tooling status and prioritized backlog.
+- `reconciliation/` — process records (`source_map.md`, `move_log.md`, `duplicate_conflicts.md`, `phase_completion.md`).
 
-## Operating rule
-For every structural move across code roots, update:
-1. `reconciliation/source_map.md`
-2. `reconciliation/move_log.md`
-3. `reconciliation/duplicate_conflicts.md` (only when conflicts exist)
+## Working conventions
+- Make structural updates directly in the top-level code roots.
+- Keep `gap_analysis/` aligned with observable repository state.
+- When code is moved or consolidated, update reconciliation records in the same change to preserve traceability.
