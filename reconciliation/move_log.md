@@ -7,7 +7,6 @@ Chronological log of moves into `reorganized/` destination roots.
 | 2026-04-01 | `multimodal-grant-main-branch/Niffler/` | `reorganized/tools/data_quality/niffler/` | copy | assistant | Source equivalent across branches (`diff -qr --exclude=.git` status 0) |
 | 2026-04-01 | `multimodal-grant-main-branch/HITI-Preproc/` | `reorganized/tools/data_quality/hiti_preproc/` | copy | assistant | Source equivalent across branches (`diff -qr --exclude=.git` status 0) |
 | 2026-04-01 | `multimodal-grant-main-branch/RadPrompter/` | `reorganized/tools/reporting/radprompter/` | copy | assistant | Source equivalent across branches (`diff -qr --exclude=.git` status 0) |
-
 | 2026-04-01 | `multimodal-grant-main-branch/MAYO_MOSCARD/` | `reorganized/models/multimodal/moscard/` | copy | assistant | Source equivalent across branches (`diff -qr --exclude=.git` status 0) |
 | 2026-04-01 | `multimodal-grant-main-branch/readmit-stgnn-main/` | `reorganized/models/multimodal/readmit_stgnn/` | copy | assistant | Source equivalent across branches (`diff -qr --exclude=.git` status 0) |
 | 2026-04-01 | `multimodal-grant-main-branch/VLM_SS-main/` | `reorganized/models/mammography/vlm_ss/` | copy | assistant | Source equivalent across branches (`diff -qr --exclude=.git` status 0) |
