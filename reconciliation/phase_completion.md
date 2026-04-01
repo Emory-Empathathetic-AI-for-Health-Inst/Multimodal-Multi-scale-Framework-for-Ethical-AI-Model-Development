@@ -13,7 +13,7 @@ Date: 2026-04-01
 
 ## What is complete now
 
-- Unified code/assets exist under `unified/`.
+- Active code/assets exist under top-level roots: `tools/`, `models/`, `fusion/`, `feature_representation/`.
 - Source->destination traceability is captured in `source_map.md` and `move_log.md`.
 - Duplicate/conflict decisions are captured in `duplicate_conflicts.md`.
 - Missing/partial tooling is captured in `gap_analysis/` outputs.
