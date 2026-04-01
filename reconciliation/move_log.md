@@ -26,3 +26,5 @@ Chronological log of moves into `reorganized/unified/`.
 | 2026-04-01 | `multimodal-grant-side-branch/Harmonization/Radiology/` | `reorganized/unified/tools/harmonization/radiology/` | copy | assistant | `diff -qr` source vs destination status 0 |
 | 2026-04-01 | `multimodal-grant-side-branch/Harmonization/Pathology/` | `reorganized/unified/tools/harmonization/pathology/` | copy | assistant | `diff -qr` source vs destination status 0 |
 | 2026-04-01 | `multimodal-grant-side-branch/Harmonization/Other/` | `reorganized/unified/tools/harmonization/other/` | copy | assistant | `diff -qr` source vs destination status 0 |
+| 2026-04-01 | `multimodal-grant-main-branch/PIQUALvsMRQy_codes/` | `reorganized/unified/tools/harmonization/radiology/PIQUALvsMRQy_codes/` | merge | assistant | No additional copy required; already present from side and equivalent (`diff -qr --exclude=.git` status 0) |
+| 2026-04-01 | `multimodal-grant-main-branch/PIQUALvsMRQy` + `multimodal-grant-side-branch/PIQUALvsMRQy` | (no unified destination) | merge | assistant | Empty placeholder file in both branches (`diff -q` status 0); intentionally not migrated as executable asset |
