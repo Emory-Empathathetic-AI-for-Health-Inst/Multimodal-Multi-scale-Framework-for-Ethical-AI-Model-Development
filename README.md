@@ -16,17 +16,14 @@ The repository supports tool development, model experimentation, and cross-modal
 - `models/` — task/model implementations across mammography, multimodal prediction, NLP, and prostate domains
 - `fusion/` — multimodal fusion pipelines (deep and handcrafted)
 - `feature_representation/` — modality-specific feature representation assets
+- `reconciliation/logs/` — provenance and consolidation records retained for auditability
 - `reconciliation/gap_analysis/` — implementation coverage and backlog tracking against project tooling goals
-- `reconciliation/` — provenance and consolidation records retained for auditability (`logs/`) plus analysis status (`gap_analysis/`)
 
 See section-level documentation in:
 - `tools/README.md`
 - `models/README.md`
 - `fusion/README.md`
 - `feature_representation/README.md`
-- `reconciliation/gap_analysis/README.md`
-- `reconciliation/README.md`
-- `reconciliation/logs/README.md`
 
 ## Representative assets currently present
 - **Data quality and preprocessing:** Niffler, HITI-Preproc
