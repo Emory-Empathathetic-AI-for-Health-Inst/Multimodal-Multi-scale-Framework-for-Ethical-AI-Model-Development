@@ -1,5 +1,0 @@
-sqlalchemy
-pillow
-pycryptodomex
-tqdm
-pyparsing
