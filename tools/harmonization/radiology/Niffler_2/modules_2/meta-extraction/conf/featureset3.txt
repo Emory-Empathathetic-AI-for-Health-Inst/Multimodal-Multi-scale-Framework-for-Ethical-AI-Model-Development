@@ -1,9 +1,0 @@
-PatientID
-StudyInstanceUID
-SeriesInstanceUID
-AcquisitionDate
-AcquisitionTime
-BodyPartExamined
-Modality
-DeviceSerialNumber
-SOPInstanceUID

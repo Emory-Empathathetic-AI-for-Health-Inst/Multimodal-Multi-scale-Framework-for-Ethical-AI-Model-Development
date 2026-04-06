@@ -1,5 +1,0 @@
-pymongo
-pydicom
-schedule
-pandas
-requests
