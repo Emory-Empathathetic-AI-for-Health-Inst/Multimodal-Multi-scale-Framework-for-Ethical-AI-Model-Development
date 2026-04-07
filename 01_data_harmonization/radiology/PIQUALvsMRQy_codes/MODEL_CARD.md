@@ -1,23 +1,16 @@
 ---
-tool_id: mrqy-experiments
 tool_name: MRQy Quality Control Experiments (PI-QUAL vs MRQy)
-card_type: data-utility
-status: Partial
-lab: [Empathi]
+lab: "Empathi"
 poc: "TBD"
 repo_path: "01_data_harmonization/radiology/PIQUALvsMRQy_codes/"
-target_path: "01_data_harmonization/radiology/PIQUALvsMRQy_codes/"
 short_description: "Experimental research code comparing PI-QUAL and MRQy prostate MRI quality metrics; includes unsupervised clustering; not a packaged tool."
-input_modality: [DICOM]
-output_type: [metrics, CSV]
-clinical_domain: [general-radiology]
+category: "data-harmonization"
+tags:
+    - clinical: [radiology, prostate-cancer]
+    - data: [imaging]
 last_updated: "2026-04-07"
-weights_availability: "not-applicable"
-external_validation: "not-applicable"
 publication: ""
-pypi_package: ""
-depends_on: []
-used_by: []
+package_url: ""
 ---
 
 # Model Card: MRQy Quality Control Experiments (PI-QUAL vs MRQy)
@@ -38,9 +31,7 @@ used_by: []
 
 Not applicable — this is experimental research code, not a reusable pipeline component.
 
-## 3. Data Modalities and Inputs
-
-### 3.1 Input Format
+## 3. Input Data Modalities
 
 | Field | Value |
 |---|---|
@@ -49,27 +40,15 @@ Not applicable — this is experimental research code, not a reusable pipeline c
 | Required fields / tags | TODO: list required DICOM tags or metadata |
 | Preprocessing required upstream | TODO |
 
-### 3.2 Anonymization and PHI Requirements
-
 > **TODO (POC: TBD):** State de-identification requirements for the prostate MRI inputs used in these experiments.
 
 ## 4. Technical Specifications
 
-### 4.1 Architecture / Algorithm
-
 > **TODO (POC: TBD):** Describe the PI-QUAL scoring method, the MRQy metrics computed, and the unsupervised clustering approach used in the comparison.
-
-### 4.2 Training Data
 
 Not applicable — classical signal processing; no learned components.
 
-### 4.3 Installation and Dependencies
-
-> **TODO (POC: TBD):** List the Python dependencies and how to set up the environment to run these scripts/notebooks.
-
-### 4.4 Inference / Usage
-
-> **TODO (POC: TBD):** Describe how to reproduce the comparison experiment. Reference any notebooks that demonstrate the analysis.
+> **TODO (POC: TBD):** List the Python dependencies and how to set up the environment to run these scripts/notebooks. Describe how to reproduce the comparison experiment. Reference any notebooks that demonstrate the analysis.
 
 ## 5. Outputs
 
@@ -91,34 +70,13 @@ Not applicable — this is a QC metric comparison study, not a predictive model.
 
 Not applicable — this is a data quality measurement research experiment.
 
-## 9. MEFINDER Pipeline Integration
-
-### 9.1 Position in Pipeline
-
-`01_data_harmonization` — research experiment informing QC methodology; not currently wired into the main pipeline.
-
-### 9.2 Upstream Dependencies
-
-None.
-
-### 9.3 Downstream Consumers
-
-Findings from these experiments may inform future development of [RadQy](../RadQy-master/MODEL_CARD.md).
-
-## 10. Citation and Attribution
+## 9. Citation and Attribution
 
 > **TODO (POC: TBD):** Add the PI-QUAL and MRQy paper citations. Add any associated MEFINDER publication if applicable.
 
-## 11. Maintenance and Contact
+## 10. Maintenance and Contact
 
-| Field | Value |
-|---|---|
-| POC | TBD — see PROJECT_CONTACTS.md |
-| Lab | Empathi |
-| Contact | See PROJECT_CONTACTS.md |
-| Status | Partial — experimental code only |
-| Card last reviewed | 2026-04-07 |
-
----
-
-*This model card follows the MEFINDER Model Card System v1.0. See [DOCUMENTATION_REQUIREMENTS.md](../../../DOCUMENTATION_REQUIREMENTS.md) for the full specification.*
+**Name**: TBD — see PROJECT_CONTACTS.md
+**Affiliation**: Empathi
+**Contact**: See PROJECT_CONTACTS.md
+**Last Reviewed**: 2026-04-07

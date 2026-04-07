@@ -34,7 +34,7 @@ The **blank template** at `model_cards/TEMPLATE.md` is the source of truth for c
 
 ## Card Types
 
-Declare the card type in the YAML front matter as `card_type`. The type determines which sections are required.
+Card type is indicated in the card header (`**Type:**`) as a human-readable annotation. It determines which prose sections are required.
 
 | Type | Description | Examples |
 |------|-------------|---------|
@@ -45,41 +45,49 @@ Declare the card type in the YAML front matter as `card_type`. The type determin
 
 ---
 
-## Required Fields by Card Type
+## Required Fields
 
 ### YAML Front Matter
 
-| Field | `data-utility` | `dl-model` | `nlp-pipeline` | `placeholder` |
-|-------|:-:|:-:|:-:|:-:|
-| `tool_id` | Required | Required | Required | Required |
-| `tool_name` | Required | Required | Required | Required |
-| `card_type` | Required | Required | Required | Required |
-| `status` | Required | Required | Required | Required |
-| `lab` | Required | Required | Required | Required |
-| `poc` | Required | Required | Required | Required |
-| `repo_path` | Required | Required | Required | — |
-| `target_path` | — | — | — | Required |
-| `short_description` | Required | Required | Required | Required |
-| `input_modality` | Required | Required | Required | Optional |
-| `output_type` | Required | Required | Required | Optional |
-| `clinical_domain` | Required | Required | Required | Optional |
-| `last_updated` | Required | Required | Required | Required |
-| `weights_availability` | — | Required | Required | — |
-| `external_validation` | — | Required | Required | — |
-| `publication` | Optional | Optional | Optional | — |
-| `pypi_package` | Optional | Optional | Optional | — |
-| `depends_on` | Optional | Optional | Optional | — |
-| `used_by` | Optional | Optional | Optional | — |
+All cards use the same YAML front matter fields regardless of card type.
 
-**Allowed values for enumerated fields:**
+| Field | Required | Description |
+|-------|:--------:|-------------|
+| `tool_name` | Required | Full display name of the tool |
+| `lab` | Required | Lab name (string) |
+| `poc` | Required | Point-of-contact name |
+| `repo_path` | Required | Path to tool directory from repo root; `""` for stubs |
+| `short_description` | Required | One sentence for the INDEX.md table |
+| `category` | Required | Pipeline stage (see allowed values below) |
+| `tags` | Required | Clinical and data modality tags (see allowed values below) |
+| `last_updated` | Required | `YYYY-MM-DD` |
+| `publication` | Optional | Publication or preprint URL, or `""` |
+| `package_url` | Optional | PyPI package name, or `""` |
 
-- `card_type`: `data-utility` | `dl-model` | `nlp-pipeline` | `placeholder`
-- `status`: `Implemented` | `Partial` | `Missing`
-- `input_modality`: `DICOM` | `NIfTI` | `PNG` | `XLSX` | `CSV` | `JSON` | `ECG` | `EHR` | `free-text` | `multiple`
-- `output_type`: `DICOM` | `NIfTI` | `PNG` | `CSV` | `JSON` | `embeddings` | `segmentation-mask` | `labels` | `metrics` | `multiple`
-- `clinical_domain`: `breast-cancer` | `prostate-cancer` | `general-radiology` | `cardiology` | `multi-domain`
-- `weights_availability`: `public` | `restricted` | `not-applicable` | `pending`
-- `external_validation`: `yes` | `no` | `in-progress` | `not-applicable`
+**Allowed values for `category`:**
+
+- `data-harmonization`
+- `feature-extraction`
+- `multimodal-embedding`
+- `phenotype-discovery`
+- `use-cases`
+- `infrastructure`
+
+**Allowed values for `tags.clinical`:**
+
+- `breast-cancer`
+- `prostate-cancer`
+- `radiology`
+- `pathology`
+- `cardiology`
+
+**Allowed values for `tags.data`:**
+
+- `imaging`
+- `free-text`
+- `tabular`
+
+---
 
 ### Prose Sections
 
@@ -87,15 +95,14 @@ Declare the card type in the YAML front matter as `card_type`. The type determin
 |---------|:-:|:-:|:-:|:-:|
 | 1. Purpose and Scope | Required | Required | Required | Required (1–2 sentences) |
 | 2. Intended Use | Optional | Required | Required | Skip |
-| 3. Data Modalities and Inputs | Required | Required | Required | Skip |
+| 3. Input Data Modalities | Required | Required | Required | Skip |
 | 4. Technical Specifications | Optional | Required | Required | Skip |
 | 5. Outputs | Required | Required | Required | Skip |
 | 6. Performance | Not applicable | Required | Required | Skip |
-| 7. Known Limitations | Optional | Required | Required | Skip |
+| 7. Known Limitations and Failure Modes | Optional | Required | Required | Skip |
 | 8. Ethical Considerations | Recommended | Required | Required | Skip |
-| 9. Pipeline Integration | Required | Required | Required | Required |
-| 10. Citation and Attribution | Optional | Optional | Optional | Skip |
-| 11. Maintenance and Contact | Required | Required | Required | Required |
+| 9. Citation and Attribution | Optional | Optional | Optional | Skip |
+| 10. Maintenance and Contact | Required | Required | Required | Required |
 
 For sections marked **Not applicable** or **Skip**, replace the section body with:
 
@@ -119,28 +126,6 @@ Every `dl-model` and `nlp-pipeline` card that processes patient data **must** in
 
 > Clinical validation pending regulatory review.
 
-### Disaggregated Performance (Section 6.2)
-
-Section 6.2 is **required** for all `dl-model` and `nlp-pipeline` cards. If disaggregated performance has not been computed, state this explicitly:
-
-> Disaggregated performance analysis has not been conducted. This is a known limitation. [State whether it is planned and, if so, when or what is blocking it.]
-
-Do not leave Section 6.2 blank.
-
-### PHI and Anonymization (Section 3.2)
-
-Every card for a tool that consumes patient data must address whether inputs must be de-identified before use and whether the tool performs anonymization itself or assumes upstream de-identification.
-
-### Cross-Card Links
-
-Links between cards (in Section 9) must use **relative paths** from the card's own location:
-
-```markdown
-- [Breast Recurrence Transformer](../../breast_recurrence_transformer/MODEL_CARD.md)
-```
-
-This ensures links resolve correctly in GitHub's file browser and in any downstream documentation system.
-
 ---
 
 ## Maintenance Workflow
@@ -148,11 +133,10 @@ This ensures links resolve correctly in GitHub's file browser and in any downstr
 **When a new tool is contributed:**
 
 1. Copy `model_cards/TEMPLATE.md` into the tool's directory as `MODEL_CARD.md`.
-2. Fill in all required YAML front matter fields.
+2. Fill in all YAML front matter fields.
 3. Fill in or mark TODO each prose section.
 4. Add the tool to `model_cards/INDEX.md`.
 5. If a stub exists in `model_cards/stubs/`, delete it and update the INDEX link.
-6. Update `depends_on` / `used_by` fields in any related cards.
 
 **When a tool's code or results change materially:**
 
@@ -170,7 +154,7 @@ The named POC for each tool (see `PROJECT_CONTACTS.md`) is responsible for keepi
 
 Co-located cards: always named `MODEL_CARD.md` (all caps, matches README.md convention).
 
-Stub files: named `<tool-slug>.md` where the slug is lowercase, hyphen-separated, and matches the `tool_id` field in the YAML front matter.
+Stub files: named `<tool-slug>.md` where the slug is lowercase and hyphen-separated.
 
 ---
 
