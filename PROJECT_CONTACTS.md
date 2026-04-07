@@ -86,13 +86,15 @@ A POC assigned here is responsible for contributing the code to the repository a
 
 #### Data Quality & Preprocessing
 
-| Tool                       | Lab     | Target Path                        | POC | Notes                                                                                          |
-| -------------------------- | ------- | ---------------------------------- | --- | ---------------------------------------------------------------------------------------------- |
-| HistoQC                    | Empathi | `01_data_harmonization/pathology/` | ??? | H&E slide quality control; archive present but not extracted or validated as runnable          |
-| MSERg                      | Empathi | `01_data_harmonization/radiology/` | ??? | Radiology-pathology co-registration pipeline; upstream dependency for fusion models            |
-| RadIQ (full FM-OOD module) | HITI    | `01_data_harmonization/radiology/` | ??? | Foundation model-based OOD detection; extends existing RadQy QC infrastructure                 |
-| Anomaly Detection          | Mayo    | `01_data_harmonization/radiology/` | ??? | OOD detection for safe cross-institution deployment; also completes the RadIQ FM-OOD component |
-| RadLLM                     | HITI    | `01_data_harmonization/radiology/` | ??? | Converts free-text radiology reports into structured labels for monitoring and training loops  |
+| Tool                       | Lab     | Target Path                        | POC                  | Notes                                                                                          |
+| -------------------------- | ------- | ---------------------------------- | -------------------- | ---------------------------------------------------------------------------------------------- |
+| HistoQC                    | Empathi | `01_data_harmonization/pathology/` | ???                  | H&E slide quality control; archive present but not extracted or validated as runnable          |
+| MSERg                      | Empathi | `01_data_harmonization/radiology/` | ???                  | Radiology-pathology co-registration pipeline; upstream dependency for fusion models            |
+| RadIQ (full FM-OOD module) | HITI    | `01_data_harmonization/radiology/` | ???                  | Foundation model-based OOD detection; extends existing RadQy QC infrastructure                 |
+| Anomaly Detection          | Mayo    | `01_data_harmonization/radiology/` | ???                  | OOD detection for safe cross-institution deployment; also completes the RadIQ FM-OOD component |
+| RadLLM                     | HITI    | `01_data_harmonization/radiology/` | ???                  | Converts free-text radiology reports into structured labels for monitoring and training loops  |
+| ROI-Lift                   | HITI    | `01_data_harmonization/radiology/` | Beatrice Brown-Mulry | Converts 2D ROIs into 3D ROIs on spatially aligned DBT images                                  |
+| Atlas                      | HITI    | `01_data_harmonization/radiology/` | Jahanzaib Malik      | Dataset embedding exploration tool for data curation and subgroup identification               |
 
 #### Reporting & Reusable Infrastructure
 
