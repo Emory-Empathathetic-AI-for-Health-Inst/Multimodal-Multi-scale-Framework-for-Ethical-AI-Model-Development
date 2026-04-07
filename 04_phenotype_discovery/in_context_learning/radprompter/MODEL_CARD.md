@@ -1,23 +1,16 @@
 ---
-tool_id: radprompter
 tool_name: RadPrompter
-card_type: nlp-pipeline
-status: Implemented
-lab: [HITI]
+lab: "HITI"
 poc: "Bardia Khosravi"
 repo_path: "04_phenotype_discovery/in_context_learning/radprompter/"
-target_path: "04_phenotype_discovery/in_context_learning/radprompter/"
 short_description: "TOML-driven LLM prompting framework for biomedical in-context learning; pip-installable with 6 tutorials."
-input_modality: [free-text, CSV]
-output_type: [CSV]
-clinical_domain: [multi-domain]
+category: "phenotype-discovery"
+tags:
+    - clinical: [radiology, pathology]
+    - data: [free-text]
 last_updated: "2026-04-07"
-weights_availability: "not-applicable"
-external_validation: "not-applicable"
 publication: ""
-pypi_package: "radprompter"
-depends_on: []
-used_by: []
+package_url: "radprompter"
 ---
 
 # Model Card: RadPrompter
@@ -42,9 +35,7 @@ RESEARCH USE ONLY — Not validated for clinical decision support.
 
 Intended users: ML researchers, clinical informatics researchers, and data scientists who need a structured, reproducible way to apply LLMs to biomedical text. RadPrompter itself makes no accuracy claims — each deployment with a specific prompt configuration and LLM constitutes a distinct application that requires its own performance evaluation.
 
-## 3. Data Modalities and Inputs
-
-### 3.1 Input Format
+## 3. Input Data Modalities
 
 | Field | Value |
 |---|---|
@@ -53,31 +44,21 @@ Intended users: ML researchers, clinical informatics researchers, and data scien
 | Required fields / tags | TOML config specifying prompt template, LLM backend, and output schema; data CSV with a text column |
 | Preprocessing required upstream | Text de-identification must be performed upstream for any patient data |
 
-### 3.2 Anonymization and PHI Requirements
-
 RadPrompter does not perform de-identification. Any clinical text passed to a cloud-based LLM API must be de-identified first. For local LLM deployments, institutional data governance policies govern PHI handling.
 
 ## 4. Technical Specifications
-
-### 4.1 Architecture / Algorithm
 
 RadPrompter is an orchestration framework, not a model. It manages: TOML-based prompt template rendering, LLM client dispatch (OpenAI, HuggingFace, local), output parsing and schema validation, and batch processing.
 
 > **TODO (POC: Bardia Khosravi):** Describe any schema validation or output parsing logic, and how multi-turn prompting and JSON prefill are handled.
 
-### 4.2 Training Data
-
 Not applicable — RadPrompter is a prompting framework without learned parameters.
-
-### 4.3 Installation and Dependencies
 
 ```bash
 pip install radprompter
 ```
 
 > **TODO (POC: Bardia Khosravi):** Add any additional dependencies (e.g., for specific LLM backends). Link to requirements file.
-
-### 4.4 Inference / Usage
 
 See tutorial notebooks:
 - `00_basic_usage.ipynb` — basic prompting
@@ -107,50 +88,20 @@ Not applicable — RadPrompter is an orchestration framework; performance depend
 
 ## 8. Ethical Considerations
 
-### 8.1 Bias and Fairness
+- **Bias and Fairness**:
+  RadPrompter itself introduces no demographic bias — bias arises from the LLM used and the prompt design. Any RadPrompter-based application used on patient data should evaluate demographic bias in LLM outputs.
+- **Confounding and Causal Risks**:
+  LLMs used via RadPrompter may produce plausible-sounding but incorrect extractions (hallucinations). Schema validation helps but does not eliminate this risk.
+- **Data Governance**:
+  RadPrompter is agnostic to data governance — the deploying researcher is responsible for ensuring input data complies with applicable data use agreements and de-identification requirements. Cloud-based LLMs should not receive identifiable patient data.
 
-RadPrompter itself introduces no demographic bias — bias arises from the LLM used and the prompt design. Any RadPrompter-based application used on patient data should evaluate demographic bias in LLM outputs.
-
-### 8.2 Confounding and Causal Risks
-
-LLMs used via RadPrompter may produce plausible-sounding but incorrect extractions (hallucinations). Schema validation helps but does not eliminate this risk.
-
-### 8.3 Clinical Deployment Safeguards
-
-RadPrompter-based applications must not be used for clinical decision support without prospective validation. LLM API calls with patient data require data governance review. Cloud-based LLMs should not receive identifiable patient data.
-
-### 8.4 Data Governance
-
-RadPrompter is agnostic to data governance — the deploying researcher is responsible for ensuring input data complies with applicable data use agreements and de-identification requirements.
-
-## 9. MEFINDER Pipeline Integration
-
-### 9.1 Position in Pipeline
-
-`04_phenotype_discovery` — in-context learning framework for extracting structured phenotypes from clinical text.
-
-### 9.2 Upstream Dependencies
-
-None — RadPrompter takes text input directly. Upstream de-identification of any patient data is required.
-
-### 9.3 Downstream Consumers
-
-> **TODO (POC: Bardia Khosravi):** List MEFINDER use cases or pipelines that use RadPrompter for phenotype extraction.
-
-## 10. Citation and Attribution
+## 9. Citation and Attribution
 
 > **TODO (POC: Bardia Khosravi):** Add publication BibTeX if available. Acknowledge LLM frameworks and APIs supported.
 
-## 11. Maintenance and Contact
+## 10. Maintenance and Contact
 
-| Field | Value |
-|---|---|
-| POC | Bardia Khosravi |
-| Lab | HITI |
-| Contact | See PROJECT_CONTACTS.md |
-| Status | Implemented |
-| Card last reviewed | 2026-04-07 |
-
----
-
-*This model card follows the MEFINDER Model Card System v1.0. See [DOCUMENTATION_REQUIREMENTS.md](../../../DOCUMENTATION_REQUIREMENTS.md) for the full specification.*
+**Name**: Bardia Khosravi
+**Affiliation**: HITI
+**Contact**: See PROJECT_CONTACTS.md
+**Last Reviewed**: 2026-04-07

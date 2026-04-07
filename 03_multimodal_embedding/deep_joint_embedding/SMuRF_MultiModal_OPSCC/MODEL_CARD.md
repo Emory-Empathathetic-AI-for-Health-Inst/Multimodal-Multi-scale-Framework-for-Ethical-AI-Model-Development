@@ -1,23 +1,16 @@
 ---
-tool_id: smurf
 tool_name: SMuRF
-card_type: dl-model
-status: Implemented
-lab: [Empathi]
+lab: "Empathi"
 poc: "TBD"
 repo_path: "03_multimodal_embedding/deep_joint_embedding/SMuRF_MultiModal_OPSCC/"
-target_path: "03_multimodal_embedding/deep_joint_embedding/SMuRF_MultiModal_OPSCC/"
 short_description: "Swin Transformer co-attention fusion of radiology and pathology images for oropharyngeal squamous cell carcinoma (OPSCC) outcome prediction; EBioMedicine."
-input_modality: [DICOM, PNG]
-output_type: [labels]
-clinical_domain: [general-radiology]
+category: "multimodal-embedding"
+tags:
+    - clinical: [radiology, pathology]
+    - data: [imaging]
 last_updated: "2026-04-07"
-weights_availability: "restricted"
-external_validation: "no"
 publication: ""
-pypi_package: ""
-depends_on: []
-used_by: []
+package_url: ""
 ---
 
 # Model Card: SMuRF
@@ -40,9 +33,7 @@ RESEARCH USE ONLY — Not validated for clinical decision support.
 
 Intended users: ML researchers and oncology researchers working on multimodal fusion for head and neck cancer outcome prediction.
 
-## 3. Data Modalities and Inputs
-
-### 3.1 Input Format
+## 3. Input Data Modalities
 
 | Field | Value |
 |---|---|
@@ -51,17 +42,11 @@ Intended users: ML researchers and oncology researchers working on multimodal fu
 | Required fields / tags | TODO: specific DICOM sequences required; pathology tile resolution requirements |
 | Preprocessing required upstream | TODO: describe radiology preprocessing (resampling, registration); pathology tile extraction (patch size, magnification) |
 
-### 3.2 Anonymization and PHI Requirements
-
 Both radiology DICOM files and pathology slide images must be de-identified before use. Pathology images may contain institutional metadata in file headers — verify de-identification.
 
 ## 4. Technical Specifications
 
-### 4.1 Architecture / Algorithm
-
 > **TODO (POC: TBD):** Describe the Swin Transformer backbone for each modality, the co-attention mechanism design, and how the dual-modality representations are fused for final outcome prediction.
-
-### 4.2 Training Data
 
 | Field | Value |
 |---|---|
@@ -70,15 +55,7 @@ Both radiology DICOM files and pathology slide images must be de-identified befo
 | Data source type | TODO — institutional / multi-institutional |
 | Data use agreement | TODO — IRB protocol number |
 
-> **TODO (POC: TBD):** Fill in dataset details. Reference the EBioMedicine paper for dataset description.
-
-### 4.3 Installation and Dependencies
-
-> **TODO (POC: TBD):** Add install command and list key dependencies. Specify GPU memory requirements for inference.
-
-### 4.4 Inference / Usage
-
-> **TODO (POC: TBD):** Show the minimal command for running inference on a paired radiology + pathology case.
+> **TODO (POC: TBD):** Fill in dataset details. Reference the EBioMedicine paper for dataset description. Add install command and list key dependencies. Specify GPU memory requirements for inference. Show the minimal command for running inference on a paired radiology + pathology case.
 
 ## 5. Outputs
 
@@ -90,15 +67,11 @@ Both radiology DICOM files and pathology slide images must be de-identified befo
 
 ## 6. Performance
 
-### 6.1 Primary Metrics
-
 | Metric | Value | Dataset | Notes |
 |---|---|---|---|
 | TODO | TODO | TODO | Reference EBioMedicine paper for reported results |
 
 > **TODO (POC: TBD):** Report AUROC, C-index (if survival), and comparison to unimodal baselines.
-
-### 6.2 Disaggregated Performance
 
 Disaggregated performance analysis has not been conducted within MEFINDER. Contact the POC for current status of demographic disaggregation analysis.
 
@@ -108,50 +81,20 @@ Disaggregated performance analysis has not been conducted within MEFINDER. Conta
 
 ## 8. Ethical Considerations
 
-### 8.1 Bias and Fairness
+- **Bias and Fairness**:
+  > **TODO (POC: TBD):** Describe the demographic composition of the training cohort (sex, age, HPV status, race) and whether the model has been evaluated across subgroups.
+- **Confounding and Causal Risks**:
+  > **TODO (POC: TBD):** Note confounders in the OPSCC training data (e.g., treatment era, institutional protocol differences, HPV status as a strong prognostic confounder) and how they were addressed.
+- **Data Governance**:
+  > **TODO (POC: TBD):** Describe training data DUA and whether model weights can be redistributed. This tool must not be used for clinical treatment decision-making without prospective validation and regulatory review.
 
-> **TODO (POC: TBD):** Describe the demographic composition of the training cohort (sex, age, HPV status, race) and whether the model has been evaluated across subgroups.
-
-### 8.2 Confounding and Causal Risks
-
-> **TODO (POC: TBD):** Note confounders in the OPSCC training data (e.g., treatment era, institutional protocol differences, HPV status as a strong prognostic confounder) and how they were addressed.
-
-### 8.3 Clinical Deployment Safeguards
-
-This tool must not be used for clinical treatment decision-making without prospective validation and regulatory review.
-
-### 8.4 Data Governance
-
-> **TODO (POC: TBD):** Describe training data DUA and whether model weights can be redistributed.
-
-## 9. MEFINDER Pipeline Integration
-
-### 9.1 Position in Pipeline
-
-`03_multimodal_embedding` — deep joint embedding and outcome prediction from radiology + pathology modalities.
-
-### 9.2 Upstream Dependencies
-
-Requires preprocessed radiology images and pathology tile extractions. No direct MEFINDER tool dependency currently defined.
-
-### 9.3 Downstream Consumers
-
-> **TODO (POC: TBD):** List any MEFINDER use cases or evaluation tools that consume SMuRF predictions.
-
-## 10. Citation and Attribution
+## 9. Citation and Attribution
 
 > **TODO (POC: TBD):** Add EBioMedicine publication BibTeX. Acknowledge Swin Transformer pretrained checkpoint and any upstream pathology tile extraction libraries used.
 
-## 11. Maintenance and Contact
+## 10. Maintenance and Contact
 
-| Field | Value |
-|---|---|
-| POC | TBD — see PROJECT_CONTACTS.md |
-| Lab | Empathi |
-| Contact | See PROJECT_CONTACTS.md |
-| Status | Implemented |
-| Card last reviewed | 2026-04-07 |
-
----
-
-*This model card follows the MEFINDER Model Card System v1.0. See [DOCUMENTATION_REQUIREMENTS.md](../../../DOCUMENTATION_REQUIREMENTS.md) for the full specification.*
+**Name**: TBD — see PROJECT_CONTACTS.md
+**Affiliation**: Empathi
+**Contact**: See PROJECT_CONTACTS.md
+**Last Reviewed**: 2026-04-07
