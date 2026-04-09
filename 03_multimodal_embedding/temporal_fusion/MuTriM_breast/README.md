@@ -7,4 +7,8 @@ Steps:
 1. For PyRadiomic feature extraction, First, install the PyRadiomics package and ensure the MRI images and corresponding tumor masks are stored in .nrrd format under the specified directory. Adjust the "data_path" variable to the folder containing the patient subdirectories with image and mask files. Finally the extracted features will be saved into the output file Tumor_feature.txt.
 2. For pathology feature extraction, follow the steps in HIPT repo: https://github.com/mahmoodlab/HIPT
 3. Make sure the clinical info sheet containing time to event is located in same directory as the feature files.
-4. Load the checkpoint and run main_breast_km_curve_final.py
+4. Load the checkpoint and run main_breast_km_curve_final.py, below is a template command:
+    python your_script_name.py \
+        --root_data "./Data/pathology_patches" \
+        --outcome_csv "./outcomes.csv" \
+        --output_dir "./results" \
