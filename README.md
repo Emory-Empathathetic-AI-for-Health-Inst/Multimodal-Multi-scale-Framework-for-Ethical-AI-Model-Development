@@ -12,7 +12,7 @@ Multimodal AI promises better clinical predictions by combining diverse data sou
 
 ## Use cases 
 The framework is validated on two clinical use cases:
-1. Using multimodal data to predict the utility of noeadjuvant chemotherapy in patients diagnpsed with breast cancer 
+1. Using multimodal data to predict the utility of noeadjuvant chemotherapy in patients diagnosed with breast cancer 
 
 ![MEFINDER framework overview: data sources, tooling stages, target predictions, and clinical outcomes](docs/figures/nac.png)
 
