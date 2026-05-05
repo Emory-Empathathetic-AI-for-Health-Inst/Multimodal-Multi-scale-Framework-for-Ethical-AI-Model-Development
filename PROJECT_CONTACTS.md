@@ -100,5 +100,4 @@ A POC assigned here is responsible for contributing the code to the repository a
 
 | Tool                                              | Lab  | Target Path                            | POC | Notes                                                                                                                   |
 | ------------------------------------------------- | ---- | -------------------------------------- | --- | ----------------------------------------------------------------------------------------------------------------------- |
-| Foundation Model Embedding Extractor (standalone) | HITI | `02_feature_extraction/deep_features/` | *PENDING* | Embedding capability exists inside mammo_vlm_ss but is not packaged as a reusable standalone tool                       |
 | Computational Debiasing Toolkit (standalone)      | Mayo | `01_data_harmonization/federated/`     | Jialu Pi or Vedant Joshi | Debiasing and confounding-correction logic is currently embedded in MOSCARD; needs separation into a reusable framework |
