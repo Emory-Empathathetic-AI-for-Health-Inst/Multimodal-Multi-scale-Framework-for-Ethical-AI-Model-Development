@@ -88,7 +88,7 @@ A POC assigned here is responsible for contributing the code to the repository a
 
 | Tool                       | Lab     | Target Path                        | POC                  | Notes                                                                                          |
 | -------------------------- | ------- | ---------------------------------- | -------------------- | ---------------------------------------------------------------------------------------------- |
-| HistoQC                    | Empathi | `01_data_harmonization/pathology/` | ???                  | H&E slide quality control; archive present but not extracted or validated as runnable          |
+| HistoQC                    | Empathi | `01_data_harmonization/pathology/` | Jackson Jacobs             | H&E slide quality control; archive present but not extracted or validated as runnable          |
 | MSERg                      | Empathi | `01_data_harmonization/radiology/` | ???                  | Radiology-pathology co-registration pipeline; upstream dependency for fusion models            |
 | RadIQ (full FM-OOD module) | HITI    | `01_data_harmonization/radiology/` | *PENDING*                  | Foundation model-based OOD detection; extends existing RadQy QC infrastructure                 |
 | Anomaly Detection          | Mayo    | `01_data_harmonization/radiology/` | Gokul Ramasamy                  | OOD detection for safe cross-institution deployment; also completes the RadIQ FM-OOD component |
