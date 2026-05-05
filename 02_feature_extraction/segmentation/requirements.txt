@@ -1,0 +1,13 @@
+torch
+torchvision
+timm
+torchstain
+h5py
+joblib
+scikit-learn
+pandas
+numpy
+opencv-python
+matplotlib
+tqdm
+huggingface_hub
