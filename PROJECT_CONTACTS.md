@@ -19,8 +19,8 @@
 | --------------------------------- | ----------------------------------------------------------- | ------- | ----------- | -------------------- | -------------------------------------------------------------------------------------------------- |
 | Niffler                           | `01_data_harmonization/radiology/Niffler/`                  | HITI    | Implemented | Beatrice Brown-Mulry | DICOM PACS/RIS retrieval, metadata extraction, anonymization                                       |
 | DICOM PreProcessor (HITI-Preproc) | `01_data_harmonization/radiology/HITI-Preproc/`             | HITI    | Implemented | Beatrice Brown-Mulry | Lightweight DICOM preprocessing package (`pip install hiti-preproc`)                               |
-| RadQy                     | `01_data_harmonization/radiology/RadQy-master/`             | Empathi    | Partial     | Yamlak Bogale           | QC metrics and interactive dashboard present |
-| MRQy (experiments)                | `01_data_harmonization/radiology/PIQUALvsMRQy_codes/`       | Empathi | Partial     | Yamlak Bogale          | PI-QUAL vs MRQy comparison code present; not yet a packaged standalone MRQy tool — see Part 2      |
+| RadQy                     | `01_data_harmonization/radiology/RadQy-master/`             | Shiradkar Lab    | Partial     | Yamlak Bogale           | QC metrics and interactive dashboard present |
+| MRQy (experiments)                | `01_data_harmonization/radiology/PIQUALvsMRQy_codes/`       | Shiradkar Lab | Partial     | Yamlak Bogale          | PI-QUAL vs MRQy comparison code present; not yet a packaged standalone MRQy tool — see Part 2      |
 | Mammography Implant Detector      | `01_data_harmonization/radiology/mammo_implant_identifier/` | HITI    | Implemented | Beatrice Brown-Mulry | Deep learning classifier with pre-trained weights; preprocessing step for mammography pipelines    |
 
 ### 01_data_harmonization / ehr_nlp
