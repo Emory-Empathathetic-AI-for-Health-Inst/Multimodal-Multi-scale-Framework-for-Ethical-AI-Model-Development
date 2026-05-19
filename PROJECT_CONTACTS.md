@@ -32,11 +32,23 @@
 | Breast Treatment Extraction      | `01_data_harmonization/ehr_nlp/breast_treatment_extraction/`   | Mayo | Implemented | Madhu Sikha | Two-phase (rule-based + BioGPT) pipeline for structured treatment timeline reconstruction                                              |
 | PCO Extraction (AI-LAD adjacent) | `01_data_harmonization/ehr_nlp/pco_extraction/`                | Mayo | Partial     | Madhu Sikha | Fine-tuned GPT-2/BioGPT for patient-reported adverse effect extraction; explicit AI-LAD tool boundary not yet established — see Part 2 |
 
+### 01_data_harmonization / pathology
+
+| Tool                             | Repo Path                                                      | Lab  | Status      | POC | Notes                                                                                                                                  |
+| -------------------------------- | -------------------------------------------------------------- | ---- | ----------- | --- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| HistoQC | `01_data_harmonization/pathology/HistoQC/` | Empathi | Implemented | Jackson Jacobs | H&E slide quality control; archive present but not extracted or validated as runnable          |
+
 ### 02_feature_extraction / deep_features
 
 | Tool                                | Repo Path                                                        | Lab     | Status      | POC | Notes                                                                                         |
 | ----------------------------------- | ---------------------------------------------------------------- | ------- | ----------- | --- | --------------------------------------------------------------------------------------------- |
 | Invisible Prostate Cancer Detection | `02_feature_extraction/deep_features/prostate_lesion_detection/` | Empathi | Implemented | ??? | nnU-Net lesion detection and segmentation on prostate MRI; trained on PI-CAI and Prostate-158 |
+
+### 02_feature_extraction / handcrafted_features 
+
+| Tool                                | Repo Path                                                        | Lab     | Status      | POC | Notes                                                                                         |
+| ----------------------------------- | ---------------------------------------------------------------- | ------- | ----------- | --- | --------------------------------------------------------------------------------------------- |
+| pZVR Biomarker | `02_feature_extraction/handcrafted_features/pZVR/` | Empathi | Implemented | Zelin Zhang | MRI peripheral-zone volume ratio biomarker                                   |
 
 ### 03_multimodal_embedding / deep_joint_embedding
 
@@ -57,7 +69,7 @@
 
 | Tool                                    | Repo Path                                                                                                               | Lab     | Status  | POC | Notes                                                                                                                                        |
 | --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------- | ------- | --- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| Rad-Path Prostate Recurrence Classifier | `03_multimodal_embedding/engineered_fusion/An-Integrated-Radiology-Pathology-ML-Classifier-post-Radical-Prostatectomy/` | Empathi | Partial | ??? | Classical ML combining radiological and pathological features for post-prostatectomy BCR; related to ClaD/RadClip roadmap items — see Part 2 |
+| Rad-Path Prostate Recurrence Classifier | `03_multimodal_embedding/engineered_fusion/An-Integrated-Radiology-Pathology-ML-Classifier-post-Radical-Prostatectomy/` | Empathi | Partial | Rakesh Shiradkar | Classical ML combining radiological and pathological features for post-prostatectomy BCR; related to ClaD/RadClip roadmap items — see Part 2 |
 
 ### 04_phenotype_discovery / in_context_learning
 
@@ -75,29 +87,19 @@ A POC assigned here is responsible for contributing the code to the repository a
 
 | Tool                        | Lab     | Target Path                            | POC | Notes                                                                        |
 | --------------------------- | ------- | -------------------------------------- | --- | ---------------------------------------------------------------------------- |
-| ClaD                        | Empathi | `05_use_cases/prostate_cancer/`        | ??? | Diagnosis nomogram for clinically significant prostate cancer stratification |
-| RadClip                     | Empathi | `05_use_cases/prostate_cancer/`        | ??? | Prognosis nomogram for recurrence trajectory support                         |
-| Histotyping                 | Empathi | `02_feature_extraction/pathomics/`     | ??? | Pathomic subtype-aware recurrence risk stratification                        |
-| Delta Radiomics Prostate    | Empathi | `02_feature_extraction/radiomics/`     | ??? | Longitudinal radiomics for progression monitoring across timepoints          |
-| Prostate Shape Distension   | Empathi | `02_feature_extraction/deep_features/` | ??? | 3D shape biomarker derived from lesion segmentation output                   |
-| pZVR Biomarker              | Empathi | `02_feature_extraction/radiomics/`     | ??? | MRI peripheral-zone volume ratio biomarker                                   |
-| Cribriform Area Index (CAI) | Empathi | `02_feature_extraction/pathomics/`     | ??? | Pathology biomarker for adverse outcome prediction from H&E slides           |
 | Prostate Cancer ChatBot     | Mayo    | `05_use_cases/prostate_cancer/`        | Amara Tariq | Clinical communication and summarization workflow                            |
 
 #### Data Quality & Preprocessing
 
 | Tool                       | Lab     | Target Path                        | POC                  | Notes                                                                                          |
 | -------------------------- | ------- | ---------------------------------- | -------------------- | ---------------------------------------------------------------------------------------------- |
-| HistoQC                    | Empathi | `01_data_harmonization/pathology/` | Jackson Jacobs             | H&E slide quality control; archive present but not extracted or validated as runnable          |
-| MSERg                      | Empathi | `01_data_harmonization/radiology/` | ???                  | Radiology-pathology co-registration pipeline; upstream dependency for fusion models            |
-| RadIQ (full FM-OOD module) | HITI    | `01_data_harmonization/radiology/` | *PENDING*                  | Foundation model-based OOD detection; extends existing RadQy QC infrastructure                 |
-| Anomaly Detection          | Mayo    | `01_data_harmonization/radiology/` | Gokul Ramasamy                  | OOD detection for safe cross-institution deployment; also completes the RadIQ FM-OOD component |
-| RadLLM                     | HITI    | `01_data_harmonization/radiology/` | *PENDING*                  | Converts free-text radiology reports into structured labels for monitoring and training loops  |
-| ROI-Lift                   | HITI    | `01_data_harmonization/radiology/` | Beatrice Brown-Mulry | Converts 2D ROIs into 3D ROIs on spatially aligned DBT images                                  |
-| Atlas                      | HITI    | `01_data_harmonization/radiology/` | Jahanzaib Malik      | Dataset embedding exploration tool for data curation and subgroup identification               |
+| Anomaly Detection          | Mayo    | `01_data_harmonization/radiology/` | Gokul Ramasamy | OOD detection for safe cross-institution deployment; also completes the RadIQ FM-OOD component |
+| ROI-Lift                   | HITI    | `01_data_harmonization/radiology/` | Beatrice Brown-Mulry | Converts 2D ROIs into 3D ROIs on spatially aligned DBT images                                 |
+| Atlas                      | HITI    | `01_data_harmonization/radiology/` | Jahanzaib Malik | Dataset embedding exploration tool for data curation and subgroup identification               |
 
 #### Reporting & Reusable Infrastructure
 
 | Tool                                              | Lab  | Target Path                            | POC | Notes                                                                                                                   |
 | ------------------------------------------------- | ---- | -------------------------------------- | --- | ----------------------------------------------------------------------------------------------------------------------- |
-| Computational Debiasing Toolkit (standalone)      | Mayo | `01_data_harmonization/federated/`     | Jialu Pi or Vedant Joshi | Debiasing and confounding-correction logic is currently embedded in MOSCARD; needs separation into a reusable framework |
+| Computational Debiasing Toolkit (standalone)      | Mayo | `01_data_harmonization/federated/` | Jialu Pi or Vedant Joshi | Debiasing and confounding-correction logic is currently embedded in MOSCARD; needs separation into a reusable framework |
+
