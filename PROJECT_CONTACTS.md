@@ -19,7 +19,7 @@
 | --------------------------------- | ----------------------------------------------------------- | ------- | ----------- | -------------------- | -------------------------------------------------------------------------------------------------- |
 | Niffler                           | `01_data_harmonization/radiology/Niffler/`                  | HITI    | Implemented | Beatrice Brown-Mulry | DICOM PACS/RIS retrieval, metadata extraction, anonymization                                       |
 | DICOM PreProcessor (HITI-Preproc) | `01_data_harmonization/radiology/HITI-Preproc/`             | HITI    | Implemented | Beatrice Brown-Mulry | Lightweight DICOM preprocessing package (`pip install hiti-preproc`)                               |
-| RadQy                     | `01_data_harmonization/radiology/RadQy-master/`             | ???    | Partial     | ???                  | QC metrics and interactive dashboard present |
+| RadQy                     | `01_data_harmonization/radiology/RadQy-master/`             | *Pending*    | Partial     | *Pending*                  | QC metrics and interactive dashboard present |
 | MRQy (experiments)                | `01_data_harmonization/radiology/PIQUALvsMRQy_codes/`       | Empathi | Partial     | ???                  | PI-QUAL vs MRQy comparison code present; not yet a packaged standalone MRQy tool — see Part 2      |
 | Mammography Implant Detector      | `01_data_harmonization/radiology/mammo_implant_identifier/` | HITI    | Implemented | Beatrice Brown-Mulry | Deep learning classifier with pre-trained weights; preprocessing step for mammography pipelines    |
 
@@ -55,7 +55,7 @@
 | Tool                              | Repo Path                                                              | Lab     | Status      | POC | Notes                                                                                                                                                             |
 | --------------------------------- | ---------------------------------------------------------------------- | ------- | ----------- | --- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | VLM for Mammogram (mammo_vlm_ss)  | `03_multimodal_embedding/deep_joint_embedding/mammo_vlm_ss/`           | Mayo    | Implemented | Gokul Ramasamy | ALBEF + MedCLIP VLM adaptation with mini-batch selective sampling; MICCAI 2024                                                                                    |
-| SMuRF                             | `03_multimodal_embedding/deep_joint_embedding/SMuRF_MultiModal_OPSCC/` | Empathi | Implemented | ??? | Swin Transformer co-attention fusion of radiology and pathology for OPSCC outcome prediction; EBioMedicine                                                        |
+| SMuRF                             | `03_multimodal_embedding/deep_joint_embedding/SMuRF_MultiModal_OPSCC/` | Empathi | Implemented | Bolin Song | Swin Transformer co-attention fusion of radiology and pathology for OPSCC outcome prediction; EBioMedicine                                                        |
 | MOSCARD (Computational Debiasing) | `03_multimodal_embedding/deep_joint_embedding/moscard/`                | Mayo    | Partial     | Jialu Pi | CXR + ECG causal fusion with structural causal models; causal/deconfounding logic embedded in model — standalone debiasing toolkit not yet separated — see Part 2 |
 
 ### 03_multimodal_embedding / temporal_fusion
@@ -63,7 +63,7 @@
 | Tool                                            | Repo Path                                                | Lab     | Status      | POC | Notes                                                                                                                                      |
 | ----------------------------------------------- | -------------------------------------------------------- | ------- | ----------- | --- | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | Graph-based Multimodal Modeling (readmit_stgnn) | `03_multimodal_embedding/temporal_fusion/readmit_stgnn/` | Mayo    | Implemented | Amara Tariq | MM-STGNN fusing longitudinal imaging and EHR data; IEEE JBHI 2023                                                   |
-| MuTriM                                          | `03_multimodal_embedding/temporal_fusion/MuTriM_breast/` | Empathi | Implemented | ??? | Multiscale deep learning model integrating longitudinal radiomics and pathomics for breast cancer recurrence and NAC benefit; under review |
+| MuTriM                                          | `03_multimodal_embedding/temporal_fusion/MuTriM_breast/` | Empathi | Implemented | Bolin Song | Multiscale deep learning model integrating longitudinal radiomics and pathomics for breast cancer recurrence and NAC benefit; under review |
 
 ### 03_multimodal_embedding / engineered_fusion
 
@@ -101,5 +101,5 @@ A POC assigned here is responsible for contributing the code to the repository a
 
 | Tool                                              | Lab  | Target Path                            | POC | Notes                                                                                                                   |
 | ------------------------------------------------- | ---- | -------------------------------------- | --- | ----------------------------------------------------------------------------------------------------------------------- |
-| Computational Debiasing Toolkit (standalone)      | Mayo | `01_data_harmonization/federated/` | Jialu Pi or Vedant Joshi | Debiasing and confounding-correction logic is currently embedded in MOSCARD; needs separation into a reusable framework |
+| Computational Debiasing Toolkit (standalone)      | Mayo | `01_data_harmonization/federated/` | Jialu Pi / Vedant Joshi | Debiasing and confounding-correction logic is currently embedded in MOSCARD; needs separation into a reusable framework |
 
