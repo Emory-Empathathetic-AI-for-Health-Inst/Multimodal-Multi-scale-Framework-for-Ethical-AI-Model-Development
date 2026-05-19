@@ -19,7 +19,7 @@
 | --------------------------------- | ----------------------------------------------------------- | ------- | ----------- | -------------------- | -------------------------------------------------------------------------------------------------- |
 | Niffler                           | `01_data_harmonization/radiology/Niffler/`                  | HITI    | Implemented | Beatrice Brown-Mulry | DICOM PACS/RIS retrieval, metadata extraction, anonymization                                       |
 | DICOM PreProcessor (HITI-Preproc) | `01_data_harmonization/radiology/HITI-Preproc/`             | HITI    | Implemented | Beatrice Brown-Mulry | Lightweight DICOM preprocessing package (`pip install hiti-preproc`)                               |
-| RadIQ / RadQy                     | `01_data_harmonization/radiology/RadQy-master/`             | HITI    | Partial     | *PENDING*                  | QC metrics and interactive dashboard present; FM-based OOD module not yet implemented — see Part 2 |
+| RadQy                     | `01_data_harmonization/radiology/RadQy-master/`             | ???    | Partial     | ???                  | QC metrics and interactive dashboard present |
 | MRQy (experiments)                | `01_data_harmonization/radiology/PIQUALvsMRQy_codes/`       | Empathi | Partial     | ???                  | PI-QUAL vs MRQy comparison code present; not yet a packaged standalone MRQy tool — see Part 2      |
 | Mammography Implant Detector      | `01_data_harmonization/radiology/mammo_implant_identifier/` | HITI    | Implemented | Beatrice Brown-Mulry | Deep learning classifier with pre-trained weights; preprocessing step for mammography pipelines    |
 
