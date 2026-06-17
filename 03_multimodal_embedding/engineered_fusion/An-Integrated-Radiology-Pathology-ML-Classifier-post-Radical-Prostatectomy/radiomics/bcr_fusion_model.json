@@ -1,0 +1,210 @@
+{
+ "name": "BCR late-fusion (TZ-radiomics + Clinical + PPF L-R gap)",
+ "cv_auc": 0.83,
+ "n_train": 44,
+ "n_pos": 12,
+ "threshold": 0.5,
+ "fusion": "mean of block probabilities",
+ "blocks": {
+  "TZ": {
+   "bias": -0.5098508596584218,
+   "squash": "sigmoid",
+   "features": [
+    {
+     "name": "rad_tz__wavelet-HLL_glcm_Correlation",
+     "median": 0.26413925637012065,
+     "mean": 0.2612915022633696,
+     "std": 0.05653404032818155,
+     "weight": 0.539553498044537
+    },
+    {
+     "name": "rad_tz__wavelet-LHL_glszm_SmallAreaEmphasis",
+     "median": 0.5072839964210332,
+     "mean": 0.503861295496769,
+     "std": 0.0749381979014255,
+     "weight": -0.42739025635699934
+    },
+    {
+     "name": "rad_tz__wavelet-HHL_glrlm_LongRunLowGrayLevelEmphasis",
+     "median": 1.4899921310390578,
+     "mean": 2.114972397720138,
+     "std": 2.9830078194892065,
+     "weight": 0.25876136111839704
+    },
+    {
+     "name": "rad_tz__wavelet-HHH_gldm_DependenceEntropy",
+     "median": 4.604586246195325,
+     "mean": 4.563894045445002,
+     "std": 0.4609114817210346,
+     "weight": -0.14221526206444107
+    },
+    {
+     "name": "rad_tz__wavelet-LHL_glszm_SizeZoneNonUniformityNormalized",
+     "median": 0.25211304268000767,
+     "mean": 0.2610835945566717,
+     "std": 0.06576304788301801,
+     "weight": -0.48784677875489585
+    },
+    {
+     "name": "rad_tz__wavelet-HLL_glszm_SizeZoneNonUniformityNormalized",
+     "median": 0.2549932161364412,
+     "mean": 0.2550389523635821,
+     "std": 0.06607456343740989,
+     "weight": -0.40111547083401344
+    },
+    {
+     "name": "rad_tz__wavelet-LLH_gldm_DependenceNonUniformityNormalized",
+     "median": 0.092348579323246,
+     "mean": 0.10535420566485848,
+     "std": 0.056280205354802174,
+     "weight": 0.3646629500715984
+    },
+    {
+     "name": "rad_tz__wavelet-HLL_glszm_SmallAreaEmphasis",
+     "median": 0.4893348040225764,
+     "mean": 0.4986237754986075,
+     "std": 0.07280281557479251,
+     "weight": -0.08820715914942719
+    },
+    {
+     "name": "rad_tz__wavelet-HHL_glszm_SmallAreaEmphasis",
+     "median": 0.6508843892983764,
+     "mean": 0.6267244936318419,
+     "std": 0.12509613049177903,
+     "weight": 0.06788367793938477
+    },
+    {
+     "name": "rad_tz__wavelet-HHL_glszm_SizeZoneNonUniformityNormalized",
+     "median": 0.39661414114332083,
+     "mean": 0.3855916460402035,
+     "std": 0.11718542028266836,
+     "weight": -0.02313045543141988
+    },
+    {
+     "name": "rad_tz__wavelet-HHH_gldm_DependenceNonUniformityNormalized",
+     "median": 0.08764541937598105,
+     "mean": 0.1025468161001315,
+     "std": 0.04840920385963419,
+     "weight": -0.012192271877943913
+    },
+    {
+     "name": "rad_tz__wavelet-HLH_gldm_DependenceNonUniformityNormalized",
+     "median": 0.08020352734072445,
+     "mean": 0.09769365312772943,
+     "std": 0.051803411656308265,
+     "weight": -0.037647632003065194
+    }
+   ]
+  },
+  "CL": {
+   "bias": -0.1588583805784165,
+   "squash": "sigmoid",
+   "features": [
+    {
+     "name": "pni",
+     "median": 0.0,
+     "mean": 0.38636363636363635,
+     "std": 0.48691557467337615,
+     "weight": 0.19686031615399865
+    },
+    {
+     "name": "pct_pos_cores",
+     "median": 50.0,
+     "mean": 52.554730622954544,
+     "std": 21.56509254283211,
+     "weight": 0.10492720313897785
+    },
+    {
+     "name": "cT",
+     "median": 2.9,
+     "mean": 2.8499999999999988,
+     "std": 0.5395705362937858,
+     "weight": 0.10986691539310434
+    },
+    {
+     "name": "psa",
+     "median": 12.55,
+     "mean": 22.765568181818185,
+     "std": 21.71388901811018,
+     "weight": 0.14309746078701935
+    },
+    {
+     "name": "vi",
+     "median": 0.0,
+     "mean": 0.13636363636363635,
+     "std": 0.34317429251230674,
+     "weight": 0.12289040038147366
+    },
+    {
+     "name": "ece",
+     "median": 0.0,
+     "mean": 0.38636363636363635,
+     "std": 0.48691557467337615,
+     "weight": 0.020661708410842576
+    },
+    {
+     "name": "lnd",
+     "median": 0.0,
+     "mean": 0.06818181818181818,
+     "std": 0.25205764787294127,
+     "weight": 0.07386040312445072
+    },
+    {
+     "name": "pirads",
+     "median": 5.0,
+     "mean": 4.409090909090909,
+     "std": 0.8872373316337788,
+     "weight": 0.0554775553584512
+    },
+    {
+     "name": "path_pT",
+     "median": 2.9,
+     "mean": 2.754545454545454,
+     "std": 0.7469497200598718,
+     "weight": -0.007719451622114204
+    },
+    {
+     "name": "mri_size",
+     "median": 16.0,
+     "mean": 17.65909090909091,
+     "std": 9.231721945695972,
+     "weight": -0.054942539667521786
+    },
+    {
+     "name": "bx_gg",
+     "median": 4.0,
+     "mean": 4.295454545454546,
+     "std": 0.7254949863414716,
+     "weight": 0.08599923425329087
+    },
+    {
+     "name": "gs_primary",
+     "median": 4.0,
+     "mean": 4.136363636363637,
+     "std": 0.40400883715070846,
+     "weight": 0.009586988422960368
+    }
+   ]
+  },
+  "PPF": {
+   "bias": -0.4112515730788787,
+   "squash": "sigmoid",
+   "features": [
+    {
+     "name": "ppfgeo__ppf_thick_lr_gap_p90_mm",
+     "median": 1.7202979327659698,
+     "mean": 2.200331262462167,
+     "std": 1.971942091632107,
+     "weight": -0.7116720885909524
+    },
+    {
+     "name": "ppfgeo__ppf_thick_lr_gap_mean_mm",
+     "median": 0.8806741461630327,
+     "mean": 1.0446979315383373,
+     "std": 0.9982477591924211,
+     "weight": -0.8071563158470703
+    }
+   ]
+  }
+ }
+}
