@@ -10,9 +10,9 @@ Place the following files in the same folder:
 
 ```text
 bcr_fusion_model.json
-<CSV file 1>
-<CSV file 2>
-<CSV file 3>
+<CSV file features 1>
+<CSV file features 2>
+<CSV file features 3>
 ```
 
 Set `DATA_DIR` to the folder containing these files, then run:
