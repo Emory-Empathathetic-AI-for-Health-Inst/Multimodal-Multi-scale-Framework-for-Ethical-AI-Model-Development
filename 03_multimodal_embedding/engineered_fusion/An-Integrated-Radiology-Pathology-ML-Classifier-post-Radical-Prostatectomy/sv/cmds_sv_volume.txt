@@ -1,0 +1,216 @@
+python sv_volume_from_mask.py \
+  --sv_masks_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/nnUNet/infer/BCR_Chimera_T2/pred_sv_fold0_best" \
+  --out_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Chimera/sv_volumes.csv" \
+ --sv_single_label 1
+
+  python sv_volume_from_mask.py \
+  --sv_masks_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/nnUNet/infer/BCR_Chimera_T2/pred_sv_fold0_best" \
+  --t2w_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/nnUNet/nnUNet_raw/DatasetXXX/imagesTr" \
+  --out_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Chimera/sv_volumes.csv" \
+  --sv_single_label 1
+
+  python sv_volume_from_mask.py \
+  --sv_masks_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/nnUNet/infer/BCR_Chimera_T2/pred_sv_fold0_best" \
+  --out_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Chimera/sv_geometry_lr.csv" \
+  --sv_label 1 \
+  --derive_lr
+
+  python sv_volume_from_mask.py \
+  --sv_masks_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/nnUNet/infer/CCF_T2/pred_sv_fold0_best" \
+  --out_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/CCF_T2/sv_geometry_lr.csv" \
+  --sv_label 1 \
+  --derive_lr
+ 
+   python sv_volume_from_mask.py \
+  --sv_masks_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/nnUNet/infer/EDRN_csPCA_T2/pred_sv_fold0_best" \
+  --out_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/EDRN_csPCA_T2/sv_geometry_lr.csv" \
+  --sv_label 1 \
+  --derive_lr
+
+     python sv_volume_from_mask.py \
+  --sv_masks_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/nnUNet/infer/EDRN_ciPCA_T2/pred_sv_fold0_best" \
+  --out_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/EDRN_ciPCA_T2/sv_geometry_lr.csv" \
+  --sv_label 1 \
+  --derive_lr
+
+  python sv_volume_from_mask.py \
+  --sv_masks_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/nnUNet/infer/JPN_csPCA_T2/pred_sv_fold0_best" \
+  --out_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/JPN_csPCA_T2/sv_geometry_lr.csv" \
+  --sv_label 1 \
+  --derive_lr
+
+  python sv_volume_from_mask.py \
+  --sv_masks_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/PICCAI/ciPCA/sv" \
+  --out_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/PICCAI/ciPCA/sv_geometry_lr.csv" \
+  --sv_label 1 \
+  --derive_lr
+
+    python sv_volume_from_mask.py \
+  --sv_masks_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/PICCAI/csPCA/sv" \
+  --out_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/PICCAI/csPCA/sv_geometry_lr.csv" \
+  --sv_label 1 \
+  --derive_lr
+
+  python sv_volume_from_mask.py \
+  --sv_masks_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/VA/Benign/sv" \
+  --out_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/VA/Benign/sv_geometry_lr.csv" \
+  --sv_label 1 \
+  --derive_lr
+
+    python sv_volume_from_mask.py \
+  --sv_masks_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/GIFU/sv" \
+  --out_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/GIFU/sv_geometry_lr.csv" \
+  --sv_label 1 \
+  --derive_lr
+
+
+export OMP_NUM_THREADS=2
+export OPENBLAS_NUM_THREADS=2
+export MKL_NUM_THREADS=2
+export NUMEXPR_NUM_THREADS=2
+  python sv_claude.py \
+  --sv_masks_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/PICCAI_extended/Benign/sv" \
+  --prostate_masks_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/PICCAI_extended/Benign/tzpz" \
+  --out_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/PICCAI_extended/Benign/sv_geometry_lr.csv" \
+  --sv_label 1 \
+  --derive_lr
+
+export OMP_NUM_THREADS=2
+export OPENBLAS_NUM_THREADS=2
+export MKL_NUM_THREADS=2
+export NUMEXPR_NUM_THREADS=2
+  python sv_claude.py \
+  --sv_masks_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/PICCAI_extended/Benign/sv" \
+  --prostate_masks_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/PICCAI_extended/Benign/tzpz" \
+  --out_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/PICCAI_extended/Benign/sv_geometry_lr.csv" \
+  --sv_label 1 \
+  --derive_lr
+
+
+export OMP_NUM_THREADS=2
+export OPENBLAS_NUM_THREADS=2
+export MKL_NUM_THREADS=2
+export NUMEXPR_NUM_THREADS=2
+python sv_claude2.py \
+  --sv_masks_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/PICCAI_extended/Benign/sv" \
+  --t2w_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/PICCAI_extended/Benign/t2w" \
+  --prostate_masks_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/PICCAI_extended/Benign/tzpz" \
+  --out_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/PICCAI_extended/Benign/sv_geometry_texture.csv" \
+  --sv_label 1 \
+  --derive_lr
+
+export OMP_NUM_THREADS=2
+export OPENBLAS_NUM_THREADS=2
+export MKL_NUM_THREADS=2
+export NUMEXPR_NUM_THREADS=2
+python sv_claude2.py \
+  --sv_masks_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Chimera/sv" \
+  --t2w_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Chimera/t2w" \
+  --prostate_masks_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Chimera/tzpz" \
+  --out_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Chimera/sv_geometry_texture.csv" \
+  --sv_label 1 \
+  --derive_lr
+
+export OMP_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1
+
+python sv_claude2.py \
+  --sv_masks_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Chimera/sv" \
+  --t2w_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Chimera/t2w" \
+  --prostate_masks_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Chimera/tzpz" \
+  --out_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Chimera/sv_geometry_texture.csv" \
+  --sv_label 1 \
+  --derive_lr
+
+export OMP_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1
+python sv_claude2.py \
+  --sv_masks_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/GIFU/sv" \
+  --t2w_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/GIFU/t2w/csPCA" \
+  --prostate_masks_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/GIFU/tzpz/csPCA" \
+  --out_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/GIFU/sv_geometry_texture.csv" \
+  --sv_label 1 \
+  --derive_lr
+
+export OMP_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1
+python sv_claude2.py \
+  --sv_masks_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/EDRN/Benign/sv"\
+  --t2w_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/EDRN/Benign/t2w" \
+  --prostate_masks_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/EDRN/Benign/tzpz" \
+  --out_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/EDRN/Benign/sv_geometry_texture.csv" \
+  --sv_label 1 \
+  --derive_lr
+
+export OMP_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1
+python sv_claude2_augusta.py \
+  --sv_masks_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Augusta/sv"\
+  --t2w_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Augusta/t2w" \
+  --prostate_masks_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Augusta/tzpz" \
+  --out_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Augusta/sv_geometry_texture.csv" \
+  --sv_label 1 \
+  --derive_lr
+
+export OMP_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1
+python sv_claude2.py \
+  --sv_masks_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/VA/Benign/sv"\
+  --t2w_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/nnUNet/infer/VA_Benign_T2/imagesTs" \
+  --prostate_masks_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/VA/Benign/tzpz" \
+  --out_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/VA/Benign/sv_geometry_texture.csv" \
+  --sv_label 1 \
+  --derive_lr
+
+  python /home/kozyoru/emory_ts/personal_space/KOZYORU/pca_aging_final/pyrad_features_extr2.py \
+  --image_dir /home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/VA/Benign/t2w \
+  --seg_dir /home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/VA/Benign/ppf \
+  --output_csv /home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/VA/Benign/pyradiomics_features_tz.csv \
+  --failed_csv /home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/VA/Benign/pyradiomics_features_tz_failed.csv \
+  --suffix_filter _t2w_0000 \
+  --allowed_suffixes ":,_t2w_0000,_0000,_t2w,_seg,_mask" \
+  --label 1 \
+  --max_workers 1 \
+  --verbose
+
+OMP_NUM_THREADS=1 \
+OPENBLAS_NUM_THREADS=1 \
+MKL_NUM_THREADS=1 \
+NUMEXPR_NUM_THREADS=1 \
+ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=1 \
+python /home/kozyoru/emory_ts/personal_space/KOZYORU/pca_aging_final/pyrad_features_extr2.py \
+  --image_dir /home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/EDRN/csPCA/t2w \
+  --seg_dir /home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/EDRN/csPCA/ppf \
+  --output_csv /home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/EDRN/csPCA/pyradiomics_features_ppf.csv \
+  --failed_csv /home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/EDRN/csPCA/pyradiomics_features_ppf_failed.csv \
+  --suffix_filter "" \
+  --allowed_suffixes ":,_t2w_fat_without_gland,_t2w,_seg,_mask,_fat_without_gland" \
+  --label 1 \
+  --max_workers 1 \
+  --verbose
+
+OMP_NUM_THREADS=1 \
+OPENBLAS_NUM_THREADS=1 \
+MKL_NUM_THREADS=1 \
+NUMEXPR_NUM_THREADS=1 \
+ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS=1 \
+python /home/kozyoru/emory_ts/personal_space/KOZYORU/pca_aging_final/pyrad_features_extr2.py \
+  --image_dir /home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/EDRN/csPCA/t2w \
+  --seg_dir /home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/EDRN/csPCA/tzpz \
+  --output_csv /home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/EDRN/csPCA/pyradiomics_features_pz.csv \
+  --failed_csv /home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/EDRN/csPCA/pyradiomics_features_pz_failed.csv \
+  --suffix_filter "" \
+  --allowed_suffixes ":,_t2w,_seg,_mask" \
+  --label 2 \
+  --max_workers 1 \
+  --verbose

@@ -1,0 +1,87 @@
+Sample cmds:
+
+python symmetry_features_extr2.py \
+  --nifti_pred_path "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age/Japanese/NIfTI/post_pred" \
+  --t2w_mri_path "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age/Japanese/NIfTI/post" \
+  --excel_path "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age/Japanese/Gifu_Univ_NHCT-RARP_Naoto_Jun12.csv" \
+  --output_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age/Japanese/NIfTI/post_symmetry_features.csv"
+
+
+export OMP_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1
+python tzpz_claude.py \
+  --t2w_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/PICCAI_extended/Benign/t2w"  \
+  --tzpz_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/PICCAI_extended/Benign/tzpz"\
+  --excel_path "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/PICCAI_extended/marksheet.csv" \
+  --output_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/PICCAI_extended/Benign/tzpz_symmetry_features.csv"
+
+
+export OMP_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1
+
+python tzpz_claude_chimera.py \
+  --t2w_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Chimera/t2w" \
+  --tzpz_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Chimera/tzpz" \
+  --excel_path "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Chimera/Chimere_prostate_clinical_data.csv" \
+  --output_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Chimera/tzpz_symmetry_features.csv" \
+  --skipped_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Chimera/tzpz_symmetry_features_skipped.csv"
+
+export OMP_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1
+python tzpz_claude_chimera.py \
+  --t2w_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/GIFU/t2w/csPCA" \
+  --tzpz_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/GIFU/tzpz/csPCA" \
+  --excel_path "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/GIFU/clinical_table_with_valid_pzvr_pv.csv" \
+  --output_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/GIFU/tzpz_features.csv" \
+  --skipped_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/GIFU/tzpz_features_skipped.csv"
+
+export OMP_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1
+python tzpz_claude_augusta.py \
+  --t2w_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Augusta/t2w" \
+  --tzpz_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Augusta/tzpz" \
+  --excel_path "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Augusta/MACE_OUTCOMES_+RADIOMIC_Features+Clinical_Features+ALL_PCA_Clean.csv" \
+  --output_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Augusta/tzpz_features2.csv" \
+  --skipped_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Augusta/tzpz_features_skipped2.csv" \
+  --id_col "patient ID"
+
+export OMP_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1
+python tzpz_claude_chimera.py \
+  --t2w_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/EDRN/csPCA/t2w" \
+  --tzpz_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/EDRN/csPCA/tzpz" \
+  --excel_path "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age/EDRN/csPCA/edrn_cs_clinical_table_with_valid_pzvr_pv.csv" \
+  --output_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/EDRN/csPCA/tzpz_features.csv" \
+  --skipped_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/EDRN/csPCA/tzpz_features_skipped.csv" \
+  --id_col "patient_id"
+
+python aging_analysis_plots.py \
+  --features_csv /results/tzpz_symmetry_features.csv \
+  --excel /data/marksheet.csv \
+  --output_dir /results/aging_biomarker_analysis
+
+export OMP_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1
+python tzpz_claude_va.py \
+  --t2w_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/VA/ciPCA/t2w" \
+  --tzpz_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/VA/ciPCA/tzpz" \
+  --excel_path "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/VA/CLE_MAPP_Radiology+Pathology_v1-31-2025_Deidentified2.csv" \
+  --output_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/VA/ciPCA/tzpz_symmetry_features.csv" \
+  --id_col MRI_FILE
+
+
+  Run tztpz symetry features for GIFU - Chimera - PICCAI all - VA 
+
+  

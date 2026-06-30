@@ -1,0 +1,9 @@
+Feature,Aging direction,Strength
+sv_total_volume_ml,↓(down) with age,★★★
+sv_to_prostate_volume_ratio,"↓ with age (SV shrinks, prostate grows)",★★★
+sv_asymmetry_index_volume,↑(up) with age/pathology,★★
+sv_total_major_axis_mm,↓ with involution,★★
+sv_total_bbox_depth_mm,↓ craniocaudal length,★★
+sv_total_sphericity,↑ as SVs become less elongated,★
+sv_centroid_to_prostate_centroid_mm,changes with BPH expansion,★
+sv_total_axis_ratio,↑ as structure becomes rounder,★

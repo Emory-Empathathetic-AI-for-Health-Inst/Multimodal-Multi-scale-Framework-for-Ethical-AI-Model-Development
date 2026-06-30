@@ -1,0 +1,136 @@
+python ppf_features_only.py \
+  --t2w_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age/Japanese/NIfTI/post" \
+  --fat_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age/Japanese/NIfTI/ppf" \
+  --gland_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age/Japanese/NIfTI/glands" \
+  --excel_path "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age/Japanese/Gifu_Univ_NHCT-RARP_Naoto_Jun12.csv" \
+  --output_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age/Japanese/NIfTI/ppf_features_only.csv" \
+  --shell_mm 15
+
+  python ppf_fat2.py \
+  --t2w_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age/Japanese/NIfTI/post" \
+  --ppf_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age/Japanese/NIfTI/ppf" \
+  --tzpz_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age/Japanese/NIfTI/post_pred" \
+  --excel_path "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age/Japanese/Gifu_Univ_NHCT-RARP_Naoto_Jun12.csv" \
+  --output_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age/Japanese/NIfTI/ppf_features_only.csv"
+
+export OMP_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1
+
+python ppf_fat2.py \
+  --t2w_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/PICCAI_extended/ciPCA/t2w" \
+  --ppf_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/PICCAI_extended/ciPCA/ppf" \
+  --tzpz_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/PICCAI_extended/ciPCA/tzpz" \
+  --excel_path "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/PICCAI_extended/marksheet.csv" \
+  --output_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/PICCAI_extended/ciPCA/ppf_features_only.csv" \
+  --skipped_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/PICCAI_extended/ciPCA/ppf_features_only_skipped.csv"
+
+
+export OMP_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1
+# ppf features
+python ppf_fat2_chimera.py \
+  --t2w_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Chimera/t2w" \
+  --ppf_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Chimera/ppf" \
+  --tzpz_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Chimera/tzpz" \
+  --excel_path "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Chimera/Chimere_prostate_clinical_data.csv" \
+  --output_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Chimera/ppf_features.csv" \
+  --skipped_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Chimera/ppf_features_skipped.csv"
+
+export OMP_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1
+# ppf features
+python ppf_fat2_chimera.py \
+  --t2w_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/GIFU/t2w/csPCA" \
+  --ppf_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/GIFU/ppf/csPCA" \
+  --tzpz_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/GIFU/tzpz/csPCA" \
+  --excel_path "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/GIFU/clinical_table_with_valid_pzvr_pv.csv" \
+  --output_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/GIFU/ppf_features.csv" \
+  --skipped_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/GIFU/ppf_features_skipped.csv"
+
+export OMP_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1
+# ppf features
+python ppf_fat2_chimera.py \
+  --t2w_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/EDRN/csPCA/t2w" \
+  --ppf_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/EDRN/csPCA/ppf" \
+  --tzpz_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/EDRN/csPCA/tzpz/" \
+  --excel_path "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age/EDRN/csPCA/edrn_cs_clinical_table_with_valid_pzvr_pv.csv" \
+  --output_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/EDRN/csPCA/ppf_features.csv" \
+  --skipped_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/EDRN/csPCA/ppf_features_skipped.csv"
+
+/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/EDRN/Benign
+
+export OMP_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1
+# ppf features
+python ppf_fat2_chimera.py \
+  --t2w_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Augusta/t2w" \
+  --ppf_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Augusta/ppf" \
+  --tzpz_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Augusta/tzpz/" \
+  --excel_path "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Augusta/MACE_OUTCOMES_+RADIOMIC_Features+Clinical_Features+ALL_PCA_Clean.csv" \
+  --output_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Augusta/ppf_features.csv" \
+  --skipped_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/Augusta/ppf_features_skipped.csv"
+
+export OMP_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1
+python ppf_fat2_va.py \
+  --t2w_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/nnUNet/infer/VA_Benign_T2/imagesTs" \
+  --ppf_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/VA/Benign/ppf" \
+  --tzpz_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/VA/Benign/tzpz/" \
+  --excel_path "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/VA/CLE_MAPP_Radiology+Pathology_v1-31-2025_Deidentified2.csv" \
+  --output_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/VA/Benign/ppf_features.csv" \
+  --id_col MRI_FILE
+
+export OMP_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1
+python ppf_fat2_va.py \
+  --t2w_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/VA/csPCA/t2w" \
+  --ppf_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/VA/csPCA/ppf" \
+  --tzpz_dir "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/VA/csPCA/tzpz" \
+  --excel_path "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/VA/CLE_MAPP_Radiology+Pathology_v1-31-2025_Deidentified2.csv" \
+  --output_csv "/home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/VA/csPCA/ppf_features.csv" \
+  --id_col MRI_FILE
+
+find /home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/VA/csPCA/ppf \
+  -type f -name "*_t2w.nii.gz" \
+  -exec bash -c '
+    for f; do
+      new="${f/_t2w.nii.gz/_t2w_0000.nii.gz}"
+      mv "$f" "$new"
+    done
+  ' _ {} +
+
+find /home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/VA/csPCA/ppf \
+  -type f -name "*_t2w_fat_without_gland.nii.gz" \
+  -exec bash -c '
+    for f; do
+      new="${f/_t2w_fat_without_gland.nii.gz/_t2w.nii.gz}"
+      if [ ! -e "$new" ]; then
+        mv "$f" "$new"
+      else
+        echo "SKIP (exists): $new"
+      fi
+    done
+  ' _ {} +
+
+
+cd /home/kozyoru/emory_ts/personal_space/KOZYORU/Prostate_Age_02172026/VA/Benign/t2w
+
+for f in *.nii*; do
+    new=$(echo "$f" | grep -oP '^PCA_CleVA_\d+')
+    mv "$f" "${new}.nii.gz"
+done
