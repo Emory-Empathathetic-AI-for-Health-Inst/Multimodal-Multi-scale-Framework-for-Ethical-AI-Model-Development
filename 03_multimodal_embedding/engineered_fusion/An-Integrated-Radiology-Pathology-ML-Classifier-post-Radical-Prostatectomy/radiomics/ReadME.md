@@ -1,4 +1,24 @@
+## BCR Prediction
 
-pip install numpy pandas //
-put bcr_fusion_model.json + the 3 CSVs in one folder, set DATA_DIR, then: //
-python predict_bcr.py        # -> bcr_predictions.csv //
+Install the required Python packages:
+
+```bash
+pip install numpy pandas
+```
+
+Place the following files in the same folder:
+
+```text
+bcr_fusion_model.json
+<CSV file 1>
+<CSV file 2>
+<CSV file 3>
+```
+
+Set `DATA_DIR` to the folder containing these files, then run:
+
+```bash
+python predict_bcr.py
+```
+
+The script will generate the BCR prediction output file.
