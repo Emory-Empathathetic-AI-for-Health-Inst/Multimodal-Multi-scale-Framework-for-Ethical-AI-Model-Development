@@ -57,11 +57,11 @@ Example:
 
 ```text
 data/raw/mri/
-├── 0760/
-│   ├── t2.nii.gz
-│   ├── adc.nii.gz
-│   ├── hbv.nii.gz
-│   └── gland.nii.gz
+├── 0760_11/
+│   ├── 0760_11_t2w.nii.gz
+│   ├── 0760_11_adc.nii.gz
+│   ├── 0760_11_hbv.nii.gz
+│   └── 0760_11_gland.nii.gz
 └── ...
 ```
 
@@ -97,10 +97,10 @@ Where:
 Example:
 
 ```text
-patient_id,time,event,age,psa,gleason
-0760,3.2,1,66,8.4,7
-0761,5.8,0,71,5.3,6
-0762,1.4,1,64,9.1,8
+patient_id,time,event
+0760,3.2,1
+0761,5.8,0
+0762,1.4,1
 ```
 
 ---
@@ -259,19 +259,18 @@ data/processed/fusion/evaluation/
 
 ---
 
-# What the outputs mean
+# Outputs
 
 The final `risk` column in `fusion_predictions.csv` is a **Cox proportional hazards log-risk score**.
 
-Higher values mean higher predicted risk of biochemical recurrence.
+Higher values mean higher predicted risk of BCR
 
-This is not a probability. It is a relative prognostic score used for ranking patients.
+ It is a relative prognostic score used for ranking patients not a probability.
 
 ---
 
 # Notes
 
-* The WSI filenames should preserve the case/patient identifier.
+* The patch extraction pipleine assumes the WSI is scanned at 20x. Slides at other magnifications may need to be resampled to 20× before preprocessing.
 * MRI folders should be organized by patient ID.
 * Clinical ground truth is optional for inference, but required for evaluation.
-* If multiple WSIs exist for one patient, they will be aggregated before fusion.
