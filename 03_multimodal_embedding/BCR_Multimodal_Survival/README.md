@@ -169,8 +169,10 @@ This step requires a **Hugging Face access token** to download the UNI2 model we
 Then run:
 
 ```bash
-python src/inference/extract_features.py --token "HF_Token"
+python src/inference/extract_features.py --token "YOUR_HUGGINGFACE_TOKEN"
 ```
+
+Replace `YOUR_HUGGINGFACE_TOKEN` with your personal Hugging Face access token.
 
 ### Step 4: Patch classification
 
