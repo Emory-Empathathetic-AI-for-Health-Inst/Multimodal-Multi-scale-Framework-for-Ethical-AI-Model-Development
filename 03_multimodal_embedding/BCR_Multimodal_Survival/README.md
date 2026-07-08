@@ -158,6 +158,16 @@ python src/preprocessing/normalize_stains.py
 
 ### Step 3: UNI2 feature extraction
 
+This step requires a **Hugging Face access token** to download the UNI2 model weights.
+
+1. Create or sign in to your Hugging Face account.
+2. Request access to the UNI2 model:
+   https://huggingface.co/MahmoodLab/UNI2-h
+3. Once access is granted, generate a User Access Token from your Hugging Face account settings:
+   https://huggingface.co/settings/tokens
+
+Then run:
+
 ```bash
 python src/inference/extract_features.py --token "HF_Token"
 ```
