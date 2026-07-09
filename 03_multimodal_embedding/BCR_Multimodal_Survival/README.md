@@ -38,9 +38,9 @@ MRI_CORE_FEATURE_EXTRACTION/
 
 > **Note:** If the required directories do not already exist, create them before copying the downloaded checkpoint files.
 
----
 
-## 3. Prepare the data
+
+## 4. Prepare the data
 
 Copy the raw data into the expected folders:
 
@@ -128,7 +128,7 @@ patient_id,time,event
 
 ---
 
-## 4. Expected folder structure
+## 5. Expected folder structure
 
 ```text
 BCR_Multimodal_Survival/
@@ -165,7 +165,7 @@ BCR_Multimodal_Survival/
 
 ---
 
-## 5. Run the pathology pipeline
+## 6. Run the pathology pipeline
 
 ### Step 1: Patch extraction
 
@@ -234,7 +234,7 @@ python src/pathology/mil_inference.py \
 
 ---
 
-## 6. Run the MRI pipeline
+## 7. Run the MRI pipeline
 
 ```bash
 python MRI_CORE_FEATURE_EXTRACTION/extract_features.py
@@ -248,7 +248,7 @@ data/interim/mri/embeddings/
 
 ---
 
-## 7. Run multimodal fusion
+## 8. Run multimodal fusion
 
 ```bash
 python src/fusion/run_fusion.py
@@ -268,7 +268,7 @@ The `fusion_predictions.csv` file contains the final patient-level risk scores.
 
 ---
 
-## 8. Evaluate survival performance, if ground truth is available
+## 9. Evaluate survival performance, if ground truth is available
 
 If you have a clinical CSV with survival labels, run:
 
