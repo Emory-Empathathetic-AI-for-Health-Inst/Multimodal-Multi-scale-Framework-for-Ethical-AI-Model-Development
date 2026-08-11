@@ -8,6 +8,10 @@ scikit-learn
 pandas
 numpy
 opencv-python
+openslide-python
+openslide-bin
+scikit-image
+scipy
 matplotlib
 tqdm
 huggingface_hub

@@ -1,4 +1,5 @@
 import os
+import argparse
 import cv2
 import torch
 import torchstain
@@ -56,10 +57,18 @@ def run_stain_normalization(base_dir, target_path):
         except Exception as e:
             print(f"Skipping {image_file} due to error: {e}")
 
-    print("✅ All images normalized and saved in-place.")
+    print("All images normalized and saved in-place.")
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Normalize patches in place with Macenko normalization.")
+    parser.add_argument("--data-dir", required=True, help="Flat directory containing extracted patches.")
+    parser.add_argument(
+        "--reference-patch",
+        default="./data/ref_patch/reference-patch.png",
+        help="Reference stain patch used to fit the normalizer.",
+    )
+    args = parser.parse_args()
     run_stain_normalization(
-        base_dir='./data/all_patches', 
-        target_path='./data/ref_patch/reference-patch.png'
+        base_dir=args.data_dir,
+        target_path=args.reference_patch,
     )
