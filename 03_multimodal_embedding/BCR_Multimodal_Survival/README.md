@@ -190,8 +190,6 @@ python main.py \
   --hf-token "$HF_TOKEN"
 ```
 
-Place the activation, token export, and command in `nih_evaluation_bcr.slurm`. A
-submitted SLURM job may not inherit variables from the interactive login shell.
 
 Do not use the literal text `"HF_TOKEN"`. Set the variable to the real token and keep
 `"$HF_TOKEN"` in the command so its value is read at runtime.
