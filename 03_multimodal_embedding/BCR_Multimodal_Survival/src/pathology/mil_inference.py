@@ -120,6 +120,8 @@ def main():
 
     bags = build_patient_bags_from_h5(args.h5)
     print(f"Built {len(bags)} patient bags")
+    if not bags:
+        raise RuntimeError("No cancer-patch patient bags were available for MIL inference")
 
     model = load_mil_model(args.ckpt, device)
 

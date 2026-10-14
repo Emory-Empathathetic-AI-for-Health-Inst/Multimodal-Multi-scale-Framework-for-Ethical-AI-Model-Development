@@ -1,311 +1,318 @@
-# Quick Start
+# BCR Multimodal Survival Inference
 
-## 1. Change to the directory
+This repository runs the complete biochemical recurrence (BCR) survival-inference
+workflow for prostate cancer. It combines whole-slide image (WSI) pathology features,
+MRI features, and a trained multimodal fusion model to produce patient-level risk
+scores.
 
-```bash
-cd BCR_Multimodal_Survival
+The pipeline is launched from `main.py`. Raw data remains in its existing location;
+generated files are written to a separate output directory.
+
+## Pipeline overview
+
+```text
+Whole-slide images
+  -> patch extraction
+  -> stain normalization
+  -> UNI2-h feature embedding
+  -> cancer classification and heatmaps
+  -> cancer-patch filtering
+  -> pathology MIL vector
+                                      -> multimodal fusion -> BCR risk score
+MRI patient folders
+  -> MRI foundation-model features
 ```
 
-## 2. Install dependencies
+## 1. Requirements
+
+- Python 3.10-3.12
+- A CUDA-capable GPU is strongly recommended
+- Sufficient storage for WSI patches and embeddings
+- Access to [MahmoodLab/UNI2-h](https://huggingface.co/MahmoodLab/UNI2-h), unless a
+  local UNI2-h checkpoint is supplied
+
+## 2. Install the environment
+
+Open a terminal in the repository root—the folder containing `main.py`.
+
+### Windows PowerShell
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+.\setup.ps1
+```
+
+### Linux, macOS, WSL, or Git Bash
 
 ```bash
-chmod +x setup.sh
+python -m venv .venv
+source .venv/bin/activate
 bash setup.sh
 ```
 
-If your system already has PyTorch installed and working, keep that installation as-is. The repository setup installs the remaining packages and prepares the directory structure.
-
----
-
-## 3. Download model checkpoints
-
-Download the pretrained model checkpoints from the GitHub Release:
-
-**https://github.com/Emory-Empathathetic-AI-for-Health-Inst/Multimodal-Multi-scale-Framework-for-Ethical-AI-Model-Development/releases/download/mri-core-checkpoints-v1.0/mri_foundation.pth**
-
-
-**https://github.com/Emory-Empathathetic-AI-for-Health-Inst/Multimodal-Multi-scale-Framework-for-Ethical-AI-Model-Development/releases/download/mri-core-checkpoints-v1.0/sam_vit_b_01ec64.pth**
-
-Place the downloaded checkpoint files in the following locations:
+## 3. Check the required model files
 
 ```text
+checkpoints/
+├── pathology/
+│   ├── prostate_uni2_model.joblib
+│   └── best_mil_chimera_surv.pth
+└── fusion/
+    └── best_fusion_chimera_surv.pth
 
 MRI_CORE_FEATURE_EXTRACTION/
+├── Gland_model/
+│   └── Finetuneglandmodel.pt
 └── weights/
     ├── mri_foundation.pth
     └── sam_vit_b_01ec64.pth
+
+data/
+└── reference/
+    └── reference-patch.png
 ```
 
-> **Note:** If the required directories do not already exist, create them before copying the downloaded checkpoint files.
+If the MRI checkpoints are absent, download each file and copy it to the exact path
+shown below:
 
+| Checkpoint | Download | Copy to |
+| --- | --- | --- |
+| MRI foundation model | [mri_foundation.pth](https://github.com/Emory-Empathathetic-AI-for-Health-Inst/Multimodal-Multi-scale-Framework-for-Ethical-AI-Model-Development/releases/download/mri-core-checkpoints-v1.0/mri_foundation.pth) | `MRI_CORE_FEATURE_EXTRACTION/weights/mri_foundation.pth` |
+| SAM ViT-B model | [sam_vit_b_01ec64.pth](https://github.com/Emory-Empathathetic-AI-for-Health-Inst/Multimodal-Multi-scale-Framework-for-Ethical-AI-Model-Development/releases/download/mri-core-checkpoints-v1.0/sam_vit_b_01ec64.pth) | `MRI_CORE_FEATURE_EXTRACTION/weights/sam_vit_b_01ec64.pth` |
+| MRI gland-segmentation model | [Finetuneglandmodel.pt](https://github.com/Emory-Empathathetic-AI-for-Health-Inst/Multimodal-Multi-scale-Framework-for-Ethical-AI-Model-Development/releases/download/mri-core-checkpoints-v1.0/Finetuneglandmodel.pt) | `MRI_CORE_FEATURE_EXTRACTION/Gland_model/Finetuneglandmodel.pt` |
 
+Create the destination directories if they do not already exist. The gland checkpoint
+must retain the exact filename `Finetuneglandmodel.pt`; the MRI extraction code looks
+for it at `MRI_CORE_FEATURE_EXTRACTION/Gland_model/Finetuneglandmodel.pt` by default.
 
-## 4. Prepare the data
+Use Git LFS or release assets when publishing large weights on GitHub.
 
-Copy the raw data into the expected folders:
+## 4. Obtain and configure a Hugging Face token
 
-```text
-data/raw/wsi/
-data/raw/mri/
-data/raw/clinical/
+UNI2-h is downloaded from Hugging Face on the first pathology run:
+
+1. [Create a Hugging Face account](https://huggingface.co/join), or sign in.
+2. Use a verified institutional email; personal-email requests may be denied.
+3. Open [MahmoodLab/UNI2-h](https://huggingface.co/MahmoodLab/UNI2-h).
+4. Agree to the conditions and request access using your full name, complete
+   affiliation, and research purpose. Wait for approval.
+5. Open [Hugging Face Access Tokens](https://huggingface.co/settings/tokens) and
+   select **Create new token**.
+6. Name it—for example, `bcr-multimodal`—and choose **Read**, or choose
+   **Fine-grained** with permission to read `MahmoodLab/UNI2-h`.
+7. Create and copy the token. It normally begins with `hf_`.
+8. Set it in the terminal used to run the pipeline.
+
+### Windows PowerShell
+
+```powershell
+$env:HF_TOKEN = "hf_your_actual_token_here"
 ```
 
-### Whole Slide Images
-
-Copy all WSI files into:
-
-```text
-data/raw/wsi/
-```
-
-Example:
-
-```text
-data/raw/wsi/
-├── 0760_11.svs
-├── 0760_51.svs
-├── 0760_52.svs
-└── ...
-```
-
-### MRI data
-
-Copy each patient’s MRI folder into:
-
-```text
-data/raw/mri/
-```
-
-Example:
-
-```text
-data/raw/mri/
-├── 0760_11/
-│   ├── 0760_11_t2w.nii.gz
-│   ├── 0760_11_adc.nii.gz
-│   ├── 0760_11_hbv.nii.gz
-│   └── 0760_11_gland.nii.gz
-└── ...
-```
-
-### Clinical data, if ground truth is available
-
-Copy the clinical CSV into:
-
-```text
-data/raw/clinical/
-```
-
-Example:
-
-```text
-data/raw/clinical/clinical_info.csv
-```
-
-The file should contain at least these columns:
-
-```text
-patient_id,time,event
-```
-
-Where:
-
-* `patient_id` is the matched patient identifier
-* `time` is follow-up time, typically in years
-* `event` is the event indicator
-
-  * `1` = biochemical recurrence occurred
-  * `0` = censored
-
-Example:
-
-```text
-patient_id,time,event
-0760,3.2,1
-0761,5.8,0
-0762,1.4,1
-```
-
----
-
-## 5. Expected folder structure
-
-```text
-BCR_Multimodal_Survival/
-├── checkpoints/
-│   ├── pathology/
-│   │   ├── prostate_uni2_model.joblib
-│   │   └── best_mil_chimera_surv.pth
-│   └── fusion/
-│       └── best_fusion_chimera_surv.pth
-├── data/
-│   ├── raw/
-│   │   ├── wsi/
-│   │   ├── mri/
-│   │   └── clinical/
-│   ├── reference/
-│   │   └── reference-patch.png
-│   ├── interim/
-│   │   ├── wsi/
-│   │   │   ├── patches/
-│   │   │   ├── all_patches/
-│   │   │   ├── embeddings/
-│   │   │   └── cancer_only/
-│   │   └── mri/
-│   │       └── embeddings/
-│   └── processed/
-│       ├── pathology/
-│       └── fusion/
-├── MRI_CORE_FEATURE_EXTRACTION/
-├── outputs/
-├── scripts/
-├── src/
-└── setup.sh
-```
-
----
-
-## 6. Run the pathology pipeline
-
-### Step 1: Patch extraction
+### Linux, macOS, WSL, Git Bash, or HPC
 
 ```bash
-python src/preprocessing/extract_patches.py --num_processors 32
+export HF_TOKEN="hf_your_actual_token_here"
 ```
 
-### Step 2: Stain normalization
+Set the variable again in new terminals and inside submitted job scripts. Never
+commit or share the token. After the initial download, later runs reuse the cache.
+
+## 5. Prepare the input data
+
+```text
+prostate_data/
+├── 1003_1.tif
+├── 1010_1.svs
+├── 1003/
+│   ├── 1003_0001_t2w.mha
+│   ├── 1003_0001_adc.mha
+│   ├── 1003_0001_hbv.mha
+│   └── 1003_0001_mask.mha
+└── 1010/
+    └── ...
+```
+
+WSI formats: `.svs`, `.ndpi`, `.tif`, and `.tiff`. WSI files must be directly inside
+the WSI directory. MRI formats: `.nii`, `.nii.gz`, `.mha`, and `.mhd`. Each MRI case
+must be in a patient folder directly inside the MRI directory.
+
+Identifiers must match across modalities. For example, pathology case `1003_1` is
+matched to MRI patient `1003` during fusion.
+
+## 6. Validate the inputs
+
+Use `--dry-run` before a long job:
 
 ```bash
-python src/preprocessing/normalize_stains.py
+python main.py \
+  --data-dir "/path/to/data" \
+  --wsi-dir "/path/to/slides" \
+  --mri-dir "/path/to/mri" \
+  --dry-run
 ```
 
-### Step 3: UNI2 feature extraction
+A successful check ends with:
 
-This step requires a **Hugging Face access token** to download the UNI2 model weights.
+```text
+Dry run successful: inputs were discovered and no processing was started.
+```
 
-1. Create or sign in to your Hugging Face account.
-2. Request access to the UNI2 model:
-   https://huggingface.co/MahmoodLab/UNI2-h
-3. Once access is granted, generate a User Access Token from your Hugging Face account settings:
-   https://huggingface.co/settings/tokens
+## 7. Run the complete end-to-end pipeline
+
+This is the recommended workflow for collaborators who want to run everything—from
+raw WSI and MRI inputs through survival evaluation—in one job.
+
+### RadPath evaluation: copy-and-run command
+
+From the repository root, activate the environment and set the token:
+
+```bash
+source .venv/bin/activate
+export HF_TOKEN="hf_your_actual_token_here"
+```
 
 Then run:
 
 ```bash
-python src/inference/extract_features.py --token "YOUR_HUGGINGFACE_TOKEN"
+python main.py \
+  --data-dir "/N/project/rad-path/Histopathology_Projects/NIH-RadPath-Evaluation" \
+  --wsi-dir "/N/project/rad-path/Histopathology_Projects/NIH-RadPath-Evaluation/WSI" \
+  --mri-dir "/N/project/rad-path/Histopathology_Projects/NIH-RadPath-Evaluation/MRI" \
+  --output-dir "/N/project/rad-path/Histopathology_Projects/NIH-RadPath-Evaluation/Output_After_Modifying" \
+  --clinical-csv "/N/project/rad-path/Histopathology_Projects/NIH-RadPath-Evaluation/clinical_data_template.csv" \
+  --stop-after evaluate \
+  --processes 1 \
+  --threads-per-process 4 \
+  --batch-size 8 \
+  --precision float16 \
+  --hf-token "$HF_TOKEN"
 ```
 
-Replace `YOUR_HUGGINGFACE_TOKEN` with your personal Hugging Face access token.
+Place the activation, token export, and command in `nih_evaluation_bcr.slurm`. A
+submitted SLURM job may not inherit variables from the interactive login shell.
 
-### Step 4: Patch classification
+Do not use the literal text `"HF_TOKEN"`. Set the variable to the real token and keep
+`"$HF_TOKEN"` in the command so its value is read at runtime.
 
-```bash
-python src/inference/classify_h5.py \
-  --h5 data/interim/wsi/embeddings/patch_embeddings.h5 \
-  --model checkpoints/pathology/prostate_uni2_model.joblib \
-  --output outputs/predictions/patch_predictions.csv
-```
+### What this command does
 
-### Step 5: Keep cancer patches only
-
-```bash
-python src/pathology/filter_cancer.py \
-  --h5 data/interim/wsi/embeddings/patch_embeddings.h5 \
-  --predictions outputs/predictions/patch_predictions.csv \
-  --wsi_dir data/raw/wsi \
-  --output data/interim/wsi/cancer_only/cancer_embeddings.h5
-```
-
-### Step 6: Build patient bags
-
-```bash
-python src/pathology/build_patient_bags.py \
-  --h5 data/interim/wsi/cancer_only/cancer_embeddings.h5
-```
-
-### Step 7: MIL feature extraction
-
-```bash
-python src/pathology/mil_inference.py \
-  --h5 data/interim/wsi/cancer_only/cancer_embeddings.h5 \
-  --ckpt checkpoints/pathology/best_mil_chimera_surv.pth \
-  --output data/processed/pathology/pathology_vectors.pt
-```
-
----
-
-## 7. Run the MRI pipeline
-
-```bash
-python MRI_CORE_FEATURE_EXTRACTION/extract_features.py
-```
-
-This will create MRI feature files inside:
+It runs all ten stages:
 
 ```text
-data/interim/mri/embeddings/
+extract -> normalize -> embed -> classify -> heatmap -> filter
+        -> mil -> mri -> fusion -> evaluate
 ```
 
----
+- `--data-dir` identifies the overall dataset and is recorded in the manifest.
+- `--wsi-dir` points to WSI files.
+- `--mri-dir` points to one subfolder per MRI patient.
+- `--output-dir` receives all patches, features, predictions, logs, and the manifest.
+- `--clinical-csv` provides `patient_id`, `time`, and `event` for evaluation.
+- `--stop-after evaluate` includes evaluation; otherwise the default ends at fusion.
+- `--processes 1` and `--threads-per-process 4` configure WSI extraction.
+- `--batch-size 8` embeds eight patches per batch.
+- `--precision float16` reduces GPU memory usage and requires a compatible GPU.
 
-## 8. Run multimodal fusion
+### Monitoring and resuming
 
-```bash
-python src/fusion/run_fusion.py
-```
-
-This creates:
+Progress is written to:
 
 ```text
-data/processed/fusion/fusion_predictions.csv
-data/processed/fusion/fusion_z_fused.npy
-data/processed/fusion/fusion_z_path.npy
-data/processed/fusion/fusion_z_mri.npy
-data/processed/fusion/aggregated_pathology_vectors.pt
+Output_After_Modifying/
+├── pipeline_manifest.json
+└── logs/
+    ├── extract.stdout.log
+    ├── extract.stderr.log
+    └── <stage>.stdout.log / <stage>.stderr.log
 ```
 
-The `fusion_predictions.csv` file contains the final patient-level risk scores.
+If interrupted, submit the identical command with the same output directory.
+Completed stages with valid outputs are skipped, and execution resumes at the first
+incomplete stage.
 
----
-
-## 9. Evaluate survival performance, if ground truth is available
-
-If you have a clinical CSV with survival labels, run:
+For data stored under one folder:
 
 ```bash
-python src/evaluation/evaluate_survival_csv.py \
-  --predictions data/processed/fusion/fusion_predictions.csv \
-  --clinical_csv data/raw/clinical/clinical_info.csv \
-  --save_km_plot
+python main.py \
+  --data-dir "/path/to/prostate_data" \
+  --clinical-csv "/path/to/clinical_info.csv" \
+  --stop-after evaluate
 ```
 
-This will compute:
+## 8. Partial runs
 
-* Concordance Index (C-index)
-* Kaplan–Meier curves
-* Log-rank test
-* Merged prediction/clinical table
+```bash
+# Two-patch-per-slide smoke test
+python main.py --data-dir "/path/to/data" --sample-count 2 --stop-after extract
 
-Outputs will be saved in:
+# Continue at embedding
+python main.py --data-dir "/path/to/data" --start-at embed
+
+# Pathology only
+python main.py --data-dir "/path/to/data" --stop-after mil
+
+# Deliberately rerun selected stages
+python main.py --data-dir "/path/to/data" --force
+```
+
+Use `--start-at` only when earlier outputs already exist in the selected output
+directory. See all options with `python main.py --help`.
+
+## 9. Outputs
 
 ```text
-data/processed/fusion/evaluation/
+<output-dir>/
+├── patches/
+├── heatmaps/
+├── pathology/
+│   ├── patch_embeddings.h5
+│   ├── patch_predictions.csv
+│   ├── cancer_embeddings.h5
+│   └── pathology_vectors.pt
+├── mri/
+├── fusion/
+│   ├── fusion_predictions.csv
+│   ├── fusion_z_fused.npy
+│   ├── fusion_z_path.npy
+│   ├── fusion_z_mri.npy
+│   ├── aggregated_pathology_vectors.pt
+│   └── evaluation/
+├── logs/
+└── pipeline_manifest.json
 ```
 
----
+The `risk` column in `fusion_predictions.csv` is a Cox proportional-hazards log-risk
+score. Higher values mean higher predicted BCR risk. It ranks patients and is not a
+probability.
 
-# Outputs
+## 10. Clinical CSV
 
-The final `risk` column in `fusion_predictions.csv` is a **Cox proportional hazards log-risk score**.
+```text
+patient_id,time,event
+1003,3.2,1
+1010,5.8,0
+```
 
-Higher values mean higher predicted risk of BCR
+- `patient_id`: identifier matched to predictions
+- `time`: follow-up time, typically in years
+- `event`: `1` for recurrence or `0` for censoring
 
- It is a relative prognostic score used for ranking patients not a probability.
+Evaluation writes the C-index, log-rank result, merged table, and Kaplan-Meier plot
+under `<output-dir>/fusion/evaluation/`.
 
----
+## Testing
 
-# Notes
+```bash
+python -m unittest discover -s tests -v
+```
 
-* The patch extraction pipleine assumes the WSI is scanned at 20x. Slides at other magnifications may need to be resampled to 20× before preprocessing.
-* MRI folders should be organized by patient ID.
-* Clinical ground truth is optional for inference, but required for evaluation.
+## Notes and troubleshooting
+
+- The patch workflow assumes 20x WSIs. Other magnifications may require resampling.
+- Do not reuse an output directory with different input data.
+- On failure, inspect `<output-dir>/logs/<stage>.stderr.log`, correct the problem, and
+  rerun the same command.
+- Duplicate WSI stems are rejected because they produce ambiguous patch identifiers.
+- Clinical labels are optional for inference but required for evaluation.

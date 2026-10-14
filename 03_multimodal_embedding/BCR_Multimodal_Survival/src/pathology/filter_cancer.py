@@ -65,7 +65,18 @@ def filter_cancer_embeddings(h5_path, prediction_csv, wsi_dir, output_h5):
     """
     df = pd.read_csv(prediction_csv)
 
-    cancer_df = df[df["prediction"] == 1]
+    if "is_cancer" in df:
+        values = df["is_cancer"]
+        if values.dtype == object:
+            values = values.astype(str).str.lower().map({"true": True, "false": False})
+        cancer_df = df[values.fillna(False).astype(bool)]
+    elif "cancer_probability" in df:
+        cancer_df = df[df["cancer_probability"] >= 0.5]
+    elif "probability_class0" in df:
+        # The bundled checkpoint records class index 0 as the positive/cancer class.
+        cancer_df = df[df["probability_class0"] >= 0.5]
+    else:
+        raise KeyError("Predictions must contain is_cancer or a cancer probability column")
     keep = set(cancer_df["filename"].astype(str).tolist())
 
     wsi_stems = get_wsi_stems(wsi_dir)
@@ -95,6 +106,12 @@ def filter_cancer_embeddings(h5_path, prediction_csv, wsi_dir, output_h5):
         filenames = [decode_name(x) for x in raw_names]
 
     mask = np.array([name in keep for name in filenames], dtype=bool)
+
+    if not mask.any():
+        raise RuntimeError(
+            "No patches met the cancer threshold. If this was a bounded smoke test, "
+            "increase --sample-count; otherwise inspect the segmentation heatmaps."
+        )
 
     cancer_embeddings = embeddings[mask]
     cancer_filenames = np.asarray(raw_names)[mask]

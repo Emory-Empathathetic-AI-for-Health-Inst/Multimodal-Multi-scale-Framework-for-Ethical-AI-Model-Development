@@ -45,7 +45,8 @@ def load_pathology_vectors(path: Path) -> Dict[str, np.ndarray]:
 
     out = {}
     for k, v in obj.items():
-        out[norm_id(k)] = np.asarray(v, dtype=np.float32).reshape(-1)
+        # Preserve separators until case IDs have been mapped to MRI patient IDs.
+        out[str(k).strip()] = np.asarray(v, dtype=np.float32).reshape(-1)
     return out
 
 

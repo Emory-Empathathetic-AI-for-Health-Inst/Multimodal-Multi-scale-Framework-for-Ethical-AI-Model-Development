@@ -19,16 +19,23 @@ def run_classification(h5_path, model_path, output_csv):
 
     # Use the saved index or default to 0
     pos_idx = checkpoint.get("pos_class_idx", 0)
+    if not 0 <= pos_idx < len(clf.classes_):
+        raise ValueError(f"Invalid positive-class index {pos_idx} for classes {clf.classes_}")
+    cancer_class = clf.classes_[pos_idx]
 
     # 2. Open Embeddings with high-performance cache
     print(f"Opening embeddings: {h5_path}")
 
-    with h5py.File(h5_path, "r", rdcc_nbytes=1024**3) as f:
+    if not os.path.isfile(h5_path):
+        raise FileNotFoundError(f"Embeddings not found at {h5_path}")
+    with h5py.File(h5_path, "r", rdcc_nbytes=256 * 1024**2) as f:
 
         # Support different H5 formats
         feat_key = "train_embeddings" if "train_embeddings" in f else "embeddings"
         name_key = "file_names" if "file_names" in f else "filenames"
 
+        if feat_key not in f or name_key not in f:
+            raise KeyError(f"Required datasets missing. Available keys: {list(f.keys())}")
         feats = f[feat_key]
         raw_names = f[name_key][:]
 
@@ -38,6 +45,8 @@ def run_classification(h5_path, model_path, output_csv):
         ]
 
         total = len(filenames)
+        if len(feats) != total:
+            raise ValueError("Embedding and filename counts do not match")
         print(f"Processing {total} patches...")
 
         all_probs = []
@@ -62,11 +71,15 @@ def run_classification(h5_path, model_path, output_csv):
         "filename": filenames,
         "prediction": all_preds,
         "probability_class0": all_probs,
+        "cancer_probability": all_probs,
+        "is_cancer": np.asarray(all_probs) >= 0.5,
     })
 
-    os.makedirs(os.path.dirname(output_csv), exist_ok=True)
+    output_parent = os.path.dirname(os.path.abspath(output_csv))
+    os.makedirs(output_parent, exist_ok=True)
     results.to_csv(output_csv, index=False)
 
+    print(f"Cancer class: {cancer_class!r} (probability column index {pos_idx})")
     print(f"Done! Results saved to {output_csv}")
 
 

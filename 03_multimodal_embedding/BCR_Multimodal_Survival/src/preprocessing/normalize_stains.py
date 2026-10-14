@@ -1,5 +1,7 @@
 
+import argparse
 import os
+from pathlib import Path
 import cv2
 import torch
 import torchstain
@@ -21,10 +23,10 @@ def run_stain_normalization(base_dir, target_path):
             f"Reference patch not found at {target_path}"
         )
 
-    target = cv2.cvtColor(
-        cv2.imread(target_path),
-        cv2.COLOR_BGR2RGB
-    )
+    target_bgr = cv2.imread(target_path)
+    if target_bgr is None:
+        raise ValueError(f"Reference patch is not a readable image: {target_path}")
+    target = cv2.cvtColor(target_bgr, cv2.COLOR_BGR2RGB)
 
     # Transformations
     T = transforms.Compose([
@@ -42,12 +44,14 @@ def run_stain_normalization(base_dir, target_path):
     normalizer.fit(T(target))
 
     # Collect images from the flat directory
-    image_files = [
+    if not os.path.isdir(base_dir):
+        raise NotADirectoryError(f"Patch directory does not exist: {base_dir}")
+    image_files = sorted([
         f for f in os.listdir(base_dir)
         if f.lower().endswith(
             (".png", ".jpg", ".jpeg")
         )
-    ]
+    ])
 
     print(f"Found {len(image_files)} images in {base_dir}")
 
@@ -61,10 +65,10 @@ def run_stain_normalization(base_dir, target_path):
 
         try:
 
-            img = cv2.cvtColor(
-                cv2.imread(image_path),
-                cv2.COLOR_BGR2RGB
-            )
+            image_bgr = cv2.imread(image_path)
+            if image_bgr is None:
+                raise ValueError("image could not be decoded")
+            img = cv2.cvtColor(image_bgr, cv2.COLOR_BGR2RGB)
 
             img_tensor = T(img)
 
@@ -87,12 +91,15 @@ def run_stain_normalization(base_dir, target_path):
         except Exception as e:
             print(f"Skipping {image_file} due to error: {e}")
 
-    print("✅ All images normalized and saved in-place.")
+    print("All images normalized and saved in-place.")
 
 
 if __name__ == "__main__":
-
-    run_stain_normalization(
-        base_dir="./data/interim/wsi/all_patches",
-        target_path="./data/reference/reference-patch.png",
+    parser = argparse.ArgumentParser(description="Normalize a flat patch directory in place.")
+    parser.add_argument("--data-dir", required=True)
+    parser.add_argument(
+        "--reference-patch",
+        default=str(Path(__file__).resolve().parents[2] / "data/reference/reference-patch.png"),
     )
+    arguments = parser.parse_args()
+    run_stain_normalization(arguments.data_dir, arguments.reference_patch)

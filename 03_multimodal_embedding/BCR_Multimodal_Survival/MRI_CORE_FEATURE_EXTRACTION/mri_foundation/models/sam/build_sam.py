@@ -187,10 +187,7 @@ def _build_sam(
             new_state_dict = {}
             if pretrained_sam:
                 print(args.arch)
-                sam_ckpt = Path(__file__).resolve().parents[3] / "weights" / "sam_vit_b_01ec64.pth"
-                if not sam_ckpt.exists():
-                    raise FileNotFoundError(f"Missing SAM checkpoint: {sam_ckpt}")
-                new_state_dict = torch.load(str(sam_ckpt), map_location="cpu")
+                new_state_dict = torch.load('/content/drive/MyDrive/MRI_CORE_FEATURE_EXTRACTION/weights/sam_vit_b_01ec64.pth')
                 print('Start from SAM weight', len(new_state_dict))
 
             # Load from MAE

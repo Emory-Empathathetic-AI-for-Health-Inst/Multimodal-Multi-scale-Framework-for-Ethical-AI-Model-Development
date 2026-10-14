@@ -1,0 +1,6 @@
+case,roi_type,modalities,num_slices,feature_dim
+1003,box,t2|adc_reg|hbv,13,256
+1010,box,t2|adc_reg|hbv,13,256
+1011,box,t2|adc_reg|hbv,15,256
+1021,box,t2|adc_reg|hbv,13,256
+1025,box,t2|adc_reg|hbv,15,256
